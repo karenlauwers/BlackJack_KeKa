@@ -1,0 +1,43 @@
+Agenda 20/12/2023: 
+- kennismaking
+- afspraken over toe te passen regels blackjack 
+- to do's bepalen 
+- afspraken over taakverdeling - samenwerking - tijdspad
+
+Regels voor blackjack: 
+    - speler(s) tegen dealer/computer
+    - iedereen krijgt 2 kaarten; speler(s):2 open, dealer: 1 open, 1 gesloten
+    - waarde van kaarten: waarde, 10 voor plaatjes, 1 of 11 voor aas
+    - doel: zo dicht mogelijk bij 21 komen
+    - speler kan kaarten bijvragen of passen
+    - als speler stopt gaat kaart van dealer open
+    - punten >21 = dood, 21 = blackjack, anders: wie het dichtste bij 21 is 
+
+Af te spreken mbt regels - heeft invloed op to do: 
+    - aantal spelers: 1 tegen computer/dealer of meerdere?
+    - split, double down, insurance toevoegen?
+    - dealer blijft bij 2 kaarten of kan bijnemen (tot >=17)?
+    - user input voor 
+        -- # decks of cards?
+        -- waarde ace heeft 1 of 11? 
+    - import images voor kaarten of zelf aanmaken in pygame?
+    - met inzet van player? 
+    - sound effects? 
+    - ...? 
+
+To do: 
+    - create constants 
+    - create a deck of cards
+    - deal cards/create hand/calculate
+    - create game
+        -- set playing field: display/window, text, buttons
+        -- set actions: hit, stand, deal, exit
+        -- set results: blackjack, busted, equal 
+        -- calculate results/design winner 
+        -- game loop  
+    - ...?
+
+Af te spreken: 
+    - hoe taken te verdelen 
+    - tijdspad
+    - volgend overleg 
