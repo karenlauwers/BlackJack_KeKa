@@ -6,6 +6,7 @@ pygame.init()
 #window settings 
 window_width = 700
 window_height = 600
+window = pygame.display.set_mode((window_width, window_height))
 
 #playing with colors 
 black = (0, 0, 0)
@@ -19,7 +20,7 @@ dark_grey = (90, 90, 90)
 dark_red = (139, 0, 0)
 
 #playing with font sizes
-font_size1 = pygame.font.SysFont('dejavusans', 30)
-font_size2 = pygame.font.SysFont('dejavusans', 50)
-font_size3 = pygame.font.SysFont('dejavusans', 70)
-font_size4 = pygame.font.SysFont('dejavusans', 100)
+font_size1 = pygame.font.SysFont('freesansbold.ttf', 30)
+font_size2 = pygame.font.SysFont('freesansbold.ttf', 50)
+font_size3 = pygame.font.SysFont('freesansbold.ttf', 70)
+font_size4 = pygame.font.SysFont('freesansbold.ttf', 100)
