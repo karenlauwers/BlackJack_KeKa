@@ -11,33 +11,36 @@ Regels voor blackjack:
     - doel: zo dicht mogelijk bij 21 komen
     - speler kan kaarten bijvragen of passen
     - als speler stopt gaat kaart van dealer open
-    - punten >21 = dood, 21 = blackjack, anders: wie het dichtste bij 21 is 
+    - punten >21 = dood, 21 = blackjack, anders: wie het dichtste bij 21 is	
+    - speler en dealer 21 = tie
 
 Af te spreken mbt regels - heeft invloed op to do: 
-    - aantal spelers: 1 tegen computer/dealer of meerdere?
-    - split, double down, insurance toevoegen?
-    - dealer blijft bij 2 kaarten of kan bijnemen (tot >=17)?
-    - user input voor 
-        -- # decks of cards?
-        -- waarde ace heeft 1 of 11? 
-    - import images voor kaarten of zelf aanmaken in pygame?
-    - met inzet van player? 
-    - sound effects? 
-    - ...? 
+    - aantal spelers: 1 tegen computer/dealer of meerdere? dealer tegen 2 spelers 
+    - split, double down, insurance toevoegen: split en double down toevoegen, insurance niet 
+    - dealer blijft bij 2 kaarten of kan bijnemen (tot >=17): dealer houdt het bij 2 kaarten: dealer kan niet bijnemen 
+        -- 3 decks of cards?
+        -- waarde ace heeft 1 of 11: vooraf programmeren  
+    - import images voor kaarten of zelf aanmaken in pygame: import images --> zie voorbeelden 
+    - met inzet van player: ja, met inzet van spelers 
+    - sound effects? Je kan bijvoorbeeld een sound effect toevoegen wanneer de speler blackjack heeft en wint - ja met sound effects 
+    - vast aantal rondes om te bepalen wie de uiteindelijke winnaar is: bv. 5 rondes
 
 To do: 
-    - create constants 
-    - create a deck of cards
-    - deal cards/create hand/calculate
-    - create game
-        -- set playing field: display/window, text, buttons
-        -- set actions: hit, stand, deal, exit
-        -- set results: blackjack, busted, equal 
+    - create constants: Karen 
+    - create a deck of cards, images importeren en waarden toekennen aan de kaarten: Kenneth 
+    - kaarten delen: Kenneth 
+	-- kaarten delen bij begin van spel: elk krijgt 2 kaarten, 1 kaart van de dealer blijft bedekt
+	-- kaarten bijgeven als speler kaarten bijvraagt: 1 kaart
+	-- situatie als speler voor split kiest : dan eerst de gesplitste set aanvullen tot 2, daarna 1 bijgeven als speler dat vraagt en toevoegen aan de 		beste zet
+    - create game: Karen 
+        -- set playing field: display/window, text, buttons: Karen
+        -- set actions: hit, stand, deal, exit: Karen 
+        -- set results: blackjack, busted, equal: Karen? 
         -- calculate results/design winner 
-        -- game loop  
-    - ...?
+        -- game loop
 
-Af te spreken: 
-    - hoe taken te verdelen 
-    - tijdspad
-    - volgend overleg 
+Afspraken: 
+- starten met programmeren (Kenneth deck of cards, Karen playing field en buttons) en dan zullen we beter zien hoe we het verder moeten opbouwen en kunnen we de taken verder verdelen
+- we willen beiden in januari examen doen, datum 20/1, project moet 10/1 ingediend worden 
+- volgend overleg 26/12 om 14u
+
