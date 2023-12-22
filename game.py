@@ -1,14 +1,18 @@
 import pygame
+from buttons import *
 from constants import *
 
 pygame.init() 
 
 #set the playing field
-window = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption("BlackJack")
 
-#deal the cards, place the cards in the playing field
+#welcome display 
+welcome = font_size2.render('Welcome to BlackJack', True, dark_red)
+welcomeRect = welcome.get_rect() 
+welcomeRect.center = (window_width//2, window_height-500)
 
+   
 #game loop
 running = True
 while running:
@@ -17,7 +21,11 @@ while running:
          running = False
     
     window.fill((casino_green1))
-   
+    window.blit(welcome,welcomeRect)
+    button_1player = Button('1 player',280, 150, True, 150, 50)
+    button_2player = Button('2 players', 280, 220, True, 150, 50)
+
+
     pygame.display.update()
 
 pygame.quit()
