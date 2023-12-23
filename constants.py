@@ -3,6 +3,10 @@ import sys
 
 pygame.init()
 
+#settings for frame per second 
+fps = 60
+clock = pygame.time.Clock()
+
 #window settings 
 window_width = 700
 window_height = 600
@@ -20,7 +24,8 @@ dark_grey = (90, 90, 90)
 dark_red = (139, 0, 0)
 
 #playing with font sizes
-font_size1 = pygame.font.SysFont('freesansbold.ttf', 30)
-font_size2 = pygame.font.SysFont('freesansbold.ttf', 50)
-font_size3 = pygame.font.SysFont('freesansbold.ttf', 70)
-font_size4 = pygame.font.SysFont('freesansbold.ttf', 100)
+font_size1 = pygame.font.SysFont('freesansbold.ttf', 22)
+font_size2 = pygame.font.SysFont('freesansbold.ttf', 30)
+font_size3 = pygame.font.SysFont('freesansbold.ttf', 50)
+font_size4 = pygame.font.SysFont('freesansbold.ttf', 70)
+font_size5 = pygame.font.SysFont('freesansbold.ttf', 100)
