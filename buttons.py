@@ -19,7 +19,7 @@ class Button:
 #We must place the text in a rectangle to put it in a certain position and with a certain shape on the screen. 
 #We call the function 'draw' every time we create a button (see def __init__ of the class)
   def draw(self): 
-    button_text = font_size1.render(self.text, True, white)
+    button_text = font_size2.render(self.text, True, white)
     button_rect = pygame.rect.Rect((self.x_pos, self.y_pos), (self.button_width, self.button_height))
     if self.enabled: 
       if self.check_click():
