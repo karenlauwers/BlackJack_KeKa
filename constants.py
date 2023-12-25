@@ -8,7 +8,7 @@ fps = 60
 clock = pygame.time.Clock()
 
 #window settings 
-window_width = 700
+window_width = 800
 window_height = 600
 window = pygame.display.set_mode((window_width, window_height))
 
@@ -22,6 +22,7 @@ red = (255, 0, 0)
 grey = (220, 220, 220)
 dark_grey = (90, 90, 90)
 dark_red = (139, 0, 0)
+yellow_gold = (255, 223, 0)
 
 #playing with font sizes
 font_size1 = pygame.font.SysFont('freesansbold.ttf', 22)

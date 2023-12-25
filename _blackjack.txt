@@ -14,8 +14,8 @@ Regels voor blackjack:
     - punten >21 = dood, 21 = blackjack, anders: wie het dichtste bij 21 is	
     - speler en dealer 21 = tie
 
-Af te spreken mbt regels - heeft invloed op to do: 
-    - aantal spelers: 1 tegen computer/dealer of meerdere? dealer tegen 2 spelers 
+Afspraken over toe te passen regels: 
+    - aantal spelers: 1 tegen computer/dealer of meerdere? dealer tegen 1 of 2 spelers, naar keuze 
     - split, double down, insurance toevoegen: split en double down toevoegen, insurance niet 
     - dealer blijft bij 2 kaarten of kan bijnemen (tot >=17): dealer houdt het bij 2 kaarten: dealer kan niet bijnemen 
         -- 3 decks of cards?
@@ -24,6 +24,17 @@ Af te spreken mbt regels - heeft invloed op to do:
     - met inzet van player: ja, met inzet van spelers 
     - sound effects? Je kan bijvoorbeeld een sound effect toevoegen wanneer de speler blackjack heeft en wint - ja met sound effects 
     - vast aantal rondes om te bepalen wie de uiteindelijke winnaar is: bv. 5 rondes
+
+Informatie/tips/filmpjes over hoe blackjack programmeren en images van kaarten
+Repository met programma in verschillende bestanden; ook een map met images: 
+BlackJack/ at master · Mozes721/BlackJack (github.com)
+
+Daar hoort volgende 2 filmpjes op youtube bij - die op zich niet heel goed zijn, maar die voor mij wel de structuur duidelijk maakten 
+Building a Simple Blackjack Game in Python with Pygame | Part 1 (youtube.com)
+Building a Simple Blackjack Game in Python with Pygame | Part 2 (youtube.com)
+
+Andere repository, met code in 1 bestand; ook een map met images 
+bobinson/blackjack: python pygame (github.com) 
 
 To do: 
     - create constants: Karen 
