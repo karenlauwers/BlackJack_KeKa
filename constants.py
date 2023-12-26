@@ -25,8 +25,8 @@ dark_red = (139, 0, 0)
 yellow_gold = (255, 223, 0)
 
 #playing with font sizes
-font_size1 = pygame.font.SysFont('freesansbold.ttf', 22)
-font_size2 = pygame.font.SysFont('freesansbold.ttf', 30)
-font_size3 = pygame.font.SysFont('freesansbold.ttf', 50)
-font_size4 = pygame.font.SysFont('freesansbold.ttf', 70)
-font_size5 = pygame.font.SysFont('freesansbold.ttf', 100)
+font_size1 = pygame.font.SysFont('Agency FB', 22)
+font_size2 = pygame.font.SysFont('Agency FB', 30)
+font_size3 = pygame.font.SysFont('Agency FB', 50)
+font_size4 = pygame.font.SysFont('Agency FB', 70)
+font_size5 = pygame.font.SysFont('Agency FB', 100)
