@@ -1,0 +1,60 @@
+Agenda 26/12/2023: 
+- stand van zaken 
+- vragen bij elkaars opgeladen bestanden GitHub 
+- volgende stappen 
+
+Stand van zaken
+- we hebben verschillende tutorials bekeken om blackjack te maken en pygame te gebruiken 
+- we zijn nieuw in programmeren; deze opleiding is voor beiden eerste kennismaking met python en pygame - dus veel zoeken
+- game-file opgezet met game loop en design van window: opbouw van verschillende schermen 
+- aparte bestanden voor constants, gametext, user_input, buttons die nodig waren om de setup/design van de schermen te doen 
+- aparte bestanden voor het kaartspel (blackjack_deck) en calculate (om de waarde van de kaarten te berekenen)
+- voor gametext en buttons : class aangemaakt. Dat maakt het gemakkelijker om er objecten van te creeren - 
+    -- voor buttons is het wel zo dat de x_pos en y_pos als parameter in de button opgenomen zijn 
+    -- dat is handig voor het tekenen van de button op het scherm, want dan hoef je alleen nog maar die functie op te roepen 
+    -- voor gametext zijn de positie x en y niet bepaald als parameter in de class zelf, maar worden ze toegevoegd bij het tekenen (def draw text) 
+        dit is zo gedaan omdat eenzelfde tekst bv. 'player 1' geen standaardpositie op de verschillende schermen heeft
+    -- er valt te discussieren over welke parameters wel of niet in de class opnemen - we laten het bij nu zo. 
+- voor class Deck en class Hand: verschillende functies in elke class gedefinieerd. 
+Bij class Deck wordt de functie build meteen opgeroepen als je een instance aanmaakt, de andere functies moet je zelf oproepen. 
+Zo behouden we de controle over wanneer we bepaalde functies oproepen. 
+
+Vragen bij elkaars opgeladen bestanden
+- file constants: opbouw van gekozen fonts in verschillende grootte. Na bespreking gekozen voor ander lettertype. 
+- file blackjack_deck: def calculate_hand, lijn 42: 
+Aan ACE wordt de waarde 1 toegekend. 
+Maar in de while-loop die volgt wordt 10 afgetrokken van de value als de value >21 is en de rank een ACE is. 
+Hier lijkt iets niet te kloppen. Kenneth kijkt na.
+
+- file calculate: 
+For-loop voor het delen van 2 kaarten: is er alleen voor 2playergame. Voor 1playergame verloopt dit anders.
+Karen heeft kopie van file gemaakt met daarin versie voor zowel 1player- als 2player-game. 
+Eveneens een functie van gemaakt, zodat we die functie later kunnen oproepen als je in de game klikt op 'deal cards'.
+
+For-loop voor het extra bedelen van 1 kaart: in deze loop krijgen beide spelers een kaart bij. Maar in het spel 
+zal enkel de speler die er met 'hit' om vraagt een kaart toebedeeld krijgen. Zie aanpassing in calculate_updateKa. 
+Ook hier een functie van gemaakt zodat we die kunnen oproepen als er op 'hit' geklikt wordt in het spel.
+
+- file game 
+Karen heeft geprobeerd om het delen van de kaarten in de game-file te steken. Is nog niet gelukt. 
+De functie blijft in de loop draaien en de value van de kaarten (Hand) wordt niet in de f'string hand_value gezet. 
+We hebben hier naar gekeken, maar begrijpen niet waarom dit zo is. 
+
+Volgende stappen
+- Eerst onderzoeken waar het probleem met de game loop zit en waarom het niet lukt om het delen van de kaarten in de game loop te steken. 
+    -- afspraak dat zowel Kenneth als Karen op zoek gaan en onmiddellijk laten weten als ze begrijpen hoe dit werkt
+    -- we gaan er van uit dat als we dit begrijpen, dat de rest van de programmatie vlot zal gaan 
+    -- Karen maakt zowel voor Kenneth als voor zichzelf een kopie van de gamefile en daar zullen we elk in werken
+    -- we werken dan niet meer in de main game-file tot we alles gaan samenzetten
+- Wat moet verder nog gebeuren? 
+    -- images van kaarten inladen en ervoor zorgen dat ze op het scherm verschijnen 
+    -- als we het probleem opgelost hebben, het spel verder afwerken: hit, stand, split definieren en de spelers beurtelings laten spelen 
+    -- in elke game willen we het spel een aantal rondes laten lopen en dan kan je opnieuw beginnen, bv. 5 rondes is 1 game.
+    -- de scores (op basis van inzet) berekenen - optellen tijdens de rondes en dan de eindscore na 5 rondes (of afhankelijk van het aantal rondes) 
+
+- Afspraken
+    -- op zoek naar de fout: Karen en Kenneth en laten weten via discord als gevonden  // FOUT INMIDDELS GEVONDEN 
+    -- taakverdeling nadat fout gevonden is : game afwerken en scores berekenen 
+    -- Karen probeert de images in te laden en op het scherm te krijgen 
+    -- Vrijdag opnieuw afspraak, 29/12 18u 
+
