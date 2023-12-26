@@ -30,7 +30,7 @@ class Button:
     else: 
         pygame.draw.rect(window, casino_green1, button_rect, 0, 5)
     pygame.draw.rect(window, dark_grey, button_rect, 2, 5) # kader om het vak heen 
-    window.blit(button_text, (self.x_pos+10, self.y_pos+10))
+    window.blit(button_text, (self.x_pos+10, self.y_pos+2))
 
 # Function to check if the button is clicked 
 # Features: if the button is enabled and you click on it, then the colour changes. 
@@ -46,16 +46,18 @@ class Button:
       return False 
 
 # BUTTONS 
-button_1player = Button('1 player',320, 150, True, 130, 50)
-button_2player = Button('2 players', 320, 220, True, 130, 50)   
+button_1player = Button('1 player',320, 150, True, 110, 50)
+button_2player = Button('2 players', 320, 220, True, 110, 50)   
 bet_ok1 = Button('Ok', 300, 180, False, 70, 50) # button to click in betscreen by player 1, as well in 1- as 2playergame
 bet_ok2 = Button('Ok', 300, 290, False, 70,50) # button to click in betscreen by player 2 in 2playergame
-play = Button('Play', 630, 240, False, 70,50) 
-hit1 = Button('Hit', 110, 50, True, 70, 40)
-stand1 = Button('Stand', 190, 50, True, 70, 40)
-split1 = Button('Split', 270, 50, True, 70, 40 )
+play = Button('Play', 630, 240, False, 70, 50) 
+hit1 = Button('Hit', 100, 50, True, 70, 40)
+stand1 = Button('Stand', 170, 50, True, 70, 40)
+split1 = Button('Split', 240, 50, False, 70, 40 )
+double1 = Button('Double', 310, 50, False, 75, 40)
 hit2 = Button('Hit', 490, 50, True, 70, 40)
-stand2 = Button('Stand', 570, 50, True, 70, 40)
-split2 = Button('Split', 650, 50, True, 70, 40 )
-# double1 = Button('Double', 190, True, 70, 50 )
-# quit = Button('Quit', 190, True, 70, 50 ) 
+stand2 = Button('Stand', 560, 50, True, 70, 40)
+split2 = Button('Split', 630, 50, False, 70, 40)
+double2 = Button('Double', 700, 50, False, 75, 40)
+initial_deal = Button('Deal cards', 100, 360, True, 140, 40)
+quit_button = Button('Quit', 700, 540, True, 70, 40)
