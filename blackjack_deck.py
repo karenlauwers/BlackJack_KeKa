@@ -50,7 +50,8 @@ class Hand(Deck):
                 self.value += 10
             else:
                 self.value += int(card)
-
+        
+        # TE ONDERZOEKEN OF DIT KLOPT 
         self.value += first_card_ranks.count('A')
 
         while self.value > 21 and 'A' in first_card_ranks:
