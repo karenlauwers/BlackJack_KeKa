@@ -6,6 +6,7 @@ from buttons import *
 from user_input import * 
 from gametext import * 
 from calculate_updateKa import * 
+from blackjack_deck import *
 
 # INITIALISE PYGAME
 pygame.init() 
@@ -25,6 +26,8 @@ click_bet_ok1 = False
 click_bet_ok2 = False 
 click_play = False 
 click_initial_deal = False 
+click_hit1 = False
+click_hit2 = False
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -94,6 +97,13 @@ while running:
     # EVENT IN THE GAME WINDOW. Player clicks on button 'deal cards'.
     if event.type == pygame.MOUSEBUTTONDOWN and initial_deal.check_click(): 
       click_initial_deal = True 
+
+    # EVENT IN THE GAME WINDOW. Player clicks on button 'hit' to get one more card.
+    if event.type == pygame.MOUSEBUTTONDOWN and hit1.check_click():
+      click_hit1 = True
+
+    if event.type == pygame.MOUSEBUTTONDOWN and hit2.check_click():
+      click_hit2 = True
 
     # AF TE WERKEN 
     # EVENT IN THE GAME WINDOW. Player1 clicks 'hit' to get one more card. 
@@ -337,6 +347,23 @@ while running:
       initial_deal.enabled = False
       initial_deal.draw_button()
 
+    # HIT FUNCTIE: je kan op hit duwen en 1 kaart wordt getrokken.
+    # Waarde van hand wordt berekend alsof er drie nieuwe kaarten getrokken zijn (2 initiele deal + 1 hit), dit corrigeren!
+    # Print functies staan er terug bij voor verduidelijking
+    if click_hit1:
+      hit_card(player1)
+      player1.calculate_hand()
+      print(player1.cards)
+      print(player1.value)
+      click_hit1 = False
+    
+    if click_hit2:
+      hit_card(player2)
+      player2.calculate_hand()
+      click_hit2 = False
+
+    # STAND FUNCTIE AANMAKEN
+    # SPLIT ?
+
   pygame.display.update()
 pygame.quit()      
-
