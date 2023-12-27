@@ -51,11 +51,9 @@ class Hand(Deck):
             else:
                 self.value += int(card)
         
-        # TE ONDERZOEKEN OF DIT KLOPT 
+        # TE ONDERZOEKEN OF DIT KLOPT: WHILE LOOP NIET NODIG. 
+        # ALLEEN NODIG ALS AAS GEZIEN WORDT ALS 1 OF 11. CODE WEG GEHAALD.
         self.value += first_card_ranks.count('A')
-
-        while self.value > 21 and 'A' in first_card_ranks:
-            self.value -= 10
 
 # Iteration in the cards list. Converts card's rank and suit into a string (cards)
 # Then checks if that card image is not already in the images list. Prevents duplication
