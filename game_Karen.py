@@ -6,6 +6,7 @@ from buttons import *
 from user_input import * 
 from gametext import * 
 from calculate_updateKa import * 
+from blackjack_deck_updateKa import * 
 
 # INITIALISE PYGAME
 pygame.init() 
@@ -31,7 +32,7 @@ click_initial_deal = False
 #==================================================================================================================
 # GAME LOOP 
 while running:
-  # clock.tick(fps)
+  clock.tick(fps)
 
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -252,7 +253,7 @@ while running:
     # set a new screen 
     window.fill((casino_green1))
     # draw a line in the middle 
-    pygame.draw.line(window, yellow_gold, (0, 350), (800, 350), 2)
+    pygame.draw.line(window, yellow_gold, (0, 380), (800, 380), 2)
     # set the title, text and buttons 
     gametitle.draw_text('center', window_width/2, 25)
     player1_text.color = dark_red
@@ -268,34 +269,47 @@ while running:
     split2.draw_button()
     double2.draw_button()
     dealer_text.color = dark_red
-    dealer_text.draw_text('topleft', 20, 360)
-    bet.draw_text('topleft', 20, 317)
-    bet.draw_text('topleft', 400, 317)
-    hand_value.draw_text('topleft', 20, 290)
-    hand_value.draw_text('topleft', 400, 290)
+    dealer_text.draw_text('topleft', 20, 390)
+    # bet.draw_text('topleft', 20, 347)
+    # bet.draw_text('topleft', 400, 347)
+    # hand_value.draw_text('topleft', 20, 320)
+    # hand_value.draw_text('topleft', 400, 320)
     initial_deal.draw_button()
     quit_button.draw_button() 
 
     # The bet of the player's is put on the screen with an f-string. 
     # Object of class GameText is created here, because the variable betinput_player must be filled by the player(s).
-    bet_player1 = GameText(f'{betinput_player1}€', font_size2, dark_red) 
-    bet_player2 = GameText(f'{betinput_player2}€', font_size2, dark_red)
-    bet_player1.draw_text('topleft', 100, 317)
-    bet_player2.draw_text('topleft', 480, 317)
-    hand_value_player1 = GameText(f'{player1.value}', font_size2, dark_red) 
-    hand_value_player1.draw_text('topleft', 100, 290)   
-    hand_value_player2 = GameText(f'{player2.value}', font_size2, dark_red) 
-    hand_value_player2.draw_text('topleft', 480, 290)    
+    bet_player1 = GameText(f'Bet     {betinput_player1}€', font_size1, dark_grey) 
+    bet_player2 = GameText(f'Bet     {betinput_player2}€', font_size1, dark_grey)
+    bet_player1.draw_text('topleft', 20, 100)
+    bet_player2.draw_text('topleft', 400, 100)
+    hand_value_player1 = GameText(f'Value {player1.value}', font_size1, dark_grey) 
+    hand_value_player1.draw_text('topleft', 20, 120)   
+    hand_value_player2 = GameText(f'Value {player2.value}', font_size1, dark_grey) 
+    hand_value_player2.draw_text('topleft', 400, 120)   
+
+    # Draw the cards on the screen 
+    player1.draw_firstcard(100, 100)
+    player1.draw_secondcard(120, 100)
+    player1.draw_thirdcard(160, 100)
+    player1.draw_fourthcard(180, 100)  
+    # player1.draw_firstcard(100, 220) dit is alleen om te laten zien waar de kaarten van de split komen, als je een split hebt. Moet nog gedefiniteerd worden.
+    player2.draw_firstcard(490, 100)
+    player2.draw_secondcard(510, 100)
+    player2.draw_thirdcard(550, 100)
+    player2.draw_fourthcard(570, 100)
+    dealer.draw_firstcard(100, 440)
+    dealer.hide_card(120, 440)
 
     # Set information on the right bottom of the screen: information about actual round (nog niet klaar), scores (nog niert klaar)
-    round.draw_text('topleft', 400, 360)
-    score.draw_text('topleft', 400, 400)
+    round.draw_text('topleft', 400, 390)
+    score.draw_text('topleft', 400, 430)
     player1_text.color = dark_grey
-    player1_text.draw_text('topleft', 420, 435)
+    player1_text.draw_text('topleft', 420, 465)
     player2_text.color = dark_grey 
-    player2_text.draw_text('topleft', 420, 465)
+    player2_text.draw_text('topleft', 420, 495)
     dealer_text.color = dark_grey
-    dealer_text.draw_text('topleft', 420, 495)
+    dealer_text.draw_text('topleft', 420, 525)
 
     if oneplayergame: 
         window.fill((casino_green1), rect=(400,45, 400,305)) 
@@ -316,21 +330,22 @@ while running:
       # initial_deal.enabled = True
       # initial_deal.draw_button()
       if twoplayergame: 
-        start_deal_twoplayergame()
+        initial_deal_twoplayergame()
         player1.calculate_hand()
         player2.calculate_hand()
+        print(player1.card_img)
         print(player1.cards)
         print(player2.cards)
         print(dealer.cards)
-        print(player1.value)
-    
+        print(player1.value)   
+
       if oneplayergame: 
-        start_deal_oneplayergame()
+        initial_deal_oneplayergame()
         player1.calculate_hand()
         print(player1.cards)
         print(dealer.cards)
         print(player1.value)
-        
+
     click_initial_deal = False   
 
     if len(player1.cards) == 2: 

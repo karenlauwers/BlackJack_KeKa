@@ -1,4 +1,5 @@
-from blackjack_deck import Deck, Hand
+import pygame
+from blackjack_deck_updateKa import Deck, Hand
 
 # Use the Deck and Hand classes
 deck = Deck()
@@ -16,14 +17,14 @@ players_twoplayergame = [player1, player2]
 
 # Deal two cards to all players and dealer: 
 # Afhankelijk van of het een oneplayer of twoplayergame is, de dealer krijgt altijd 2 kaarten 
-def start_deal_oneplayergame():
+def initial_deal_oneplayergame():
     for p in players_oneplayergame:
         for i in range(2):
             p.add_card(deck.deal())
     for i in range(2):
         dealer.add_card(deck.deal())
-
-def start_deal_twoplayergame():
+    
+def initial_deal_twoplayergame():
     for p in players_twoplayergame:
         for i in range(2):
             p.add_card(deck.deal())
