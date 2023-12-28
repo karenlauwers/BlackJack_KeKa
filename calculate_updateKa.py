@@ -35,6 +35,7 @@ def initial_deal_twoplayergame():
 # Deal another card to both players
 # Dit is wanneer je klikt op hit, maar er moet niet bij elke speler een kaart bijkomen.
 # Er moet alleen een kaart bijkomen bij de speler als hij daar met hit om vraagt. 
+# Nieuwe functie toegevoegd: stand_action en aanpassing hit_card
 
 def hit_card(player): 
     player.add_card(deck.deal())
