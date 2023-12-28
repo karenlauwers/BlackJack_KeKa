@@ -63,15 +63,18 @@ class Hand:
         self.value = 0
     
 # Adds a card to the empty cards list
-    def add_card(self, card):
-        self.cards.append(card)
+# Hide functie toegevoegd
+    def add_card(self, card, hide=False):
+        card_with_hide = (card[0], card[1], hide)
+        self.cards.append(card_with_hide)
 
 # Calculates the value of the hand
 # Original functie maakt eerst een lijst van de rank van de kaarten, dan een lijst van de non-aces en evt. ook nog een lijst van de aces.
 # Ik denk dat het zo ook kan? 
 # Ik heb het vastzetten van de ace op 1 gewijzigd: ace is 10 als de value <= 10 en anders is het 1
-    def calculate_hand(self):    
-        self.value = 0        
+# self.value = 0 toegevoegd. Bij het telkens opnieuw berekenen van de hand wordt waarde op 0 gezet
+    def calculate_hand(self):
+        self.value = 0           
         for card in self.cards:
             if card[1] in 'JQK':
                 self.value += 10

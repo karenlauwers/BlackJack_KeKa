@@ -6,7 +6,7 @@ from buttons import *
 from user_input import * 
 from gametext import * 
 from calculate_updateKa import * 
-from blackjack_deck import *
+from blackjack_deck_updateKa import *
 
 # INITIALISE PYGAME
 pygame.init() 
@@ -28,6 +28,8 @@ click_play = False
 click_initial_deal = False 
 click_hit1 = False
 click_hit2 = False
+click_stand1 = False
+click_stand2 = False
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -104,6 +106,13 @@ while running:
 
     if event.type == pygame.MOUSEBUTTONDOWN and hit2.check_click():
       click_hit2 = True
+
+    # EVENT IN THE GAME WINDOW. Player clicks on button 'stand'.
+    if event.type == pygame.MOUSEBUTTONDOWN and stand1.check_click():
+      click_stand1 = True
+
+    if event.type == pygame.MOUSEBUTTONDOWN and stand2.check_click():
+      click_stand2 = True
 
     # AF TE WERKEN 
     # EVENT IN THE GAME WINDOW. Player1 clicks 'hit' to get one more card. 
@@ -326,7 +335,7 @@ while running:
       # initial_deal.enabled = True
       # initial_deal.draw_button()
       if twoplayergame: 
-        start_deal_twoplayergame()
+        initial_deal_twoplayergame()
         player1.calculate_hand()
         player2.calculate_hand()
         print(player1.cards)
@@ -335,7 +344,7 @@ while running:
         print(player1.value)
     
       if oneplayergame: 
-        start_deal_oneplayergame()
+        initial_deal_oneplayergame()
         player1.calculate_hand()
         print(player1.cards)
         print(dealer.cards)
@@ -347,22 +356,59 @@ while running:
       initial_deal.enabled = False
       initial_deal.draw_button()
 
-    # HIT FUNCTIE: je kan op hit duwen en 1 kaart wordt getrokken.
-    # Waarde van hand wordt berekend alsof er drie nieuwe kaarten getrokken zijn (2 initiele deal + 1 hit), dit corrigeren!
+    # HIT: je kan op hit duwen en 1 kaart wordt getrokken.
     # Print functies staan er terug bij voor verduidelijking
     if click_hit1:
+      player1.value = 0
       hit_card(player1)
       player1.calculate_hand()
       print(player1.cards)
       print(player1.value)
+      print(hit_card(player1))
       click_hit1 = False
-    
+
+    if player1.value > 21:
+      hit1.enabled = False
+      hit1.draw_button()
+      stand1.enabled = False
+
     if click_hit2:
+      player2.value = 0
       hit_card(player2)
       player2.calculate_hand()
       click_hit2 = False
 
-    # STAND FUNCTIE AANMAKEN
+    if player2.value > 21:
+      hit2.enabled = False
+      hit2.draw_button()
+      stand2.enabled = False
+
+    # STAND:
+    if click_stand1:
+      print(f"Player1 stands with cards: {player1.cards} and value: {player1.value}")
+      stand_action(player1, player2, dealer, deck)
+      print(stand_action(player1, player2, dealer, deck))
+      click_stand1 = False
+      hit1.enabled = False
+      hit1.draw_button()
+      stand1.enabled = False
+      stand1.draw_button()
+      
+    if click_stand2:
+      print(f"Player2 stands with cards: {player2.cards} and value: {player2.value}")
+      stand_action(player1, player2, dealer, deck)
+      print(stand_action(player1, player2, dealer, deck))
+      click_stand2 = False
+      hit2.enabled = False
+      hit2.draw_button()
+      stand2.enabled = False
+      stand2.draw_button()
+      
+    # One player game werkt precies. 
+    # Two player game wordt resultaat meteen beslist vooraleer het aan de volgende speler is .... 
+    # Hoe maak je dit turn based?
+    # Hoe resultaten met text in game window krijgen(player wins, dealer wins....?)
+    # Hoe kaarten op scherm krijgen?
     # SPLIT ?
 
   pygame.display.update()
