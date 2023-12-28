@@ -57,6 +57,7 @@ class Hand:
 # Original functie maakt eerst een lijst van de rank van de kaarten, dan een lijst van de non-aces en evt. ook nog een lijst van de aces.
 # Ik denk dat het zo ook kan? 
 # Ik heb het vastzetten van de ace op 1 gewijzigd: ace is 10 als de value <= 10 en anders is het 1
+# self.value = 0 toegevoegd. Bij het telkens opnieuw berekenen van de hand wordt waarde op 0 gezet
     def calculate_hand(self):
         self.value = 0           
         for card in self.cards:
