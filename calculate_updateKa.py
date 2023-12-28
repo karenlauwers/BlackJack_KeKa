@@ -40,10 +40,12 @@ def initial_deal_twoplayergame():
 def hit_card(player): 
     player.add_card(deck.deal())
 
-    if player.value > 21:
+    if player.value > 21 and dealer.value <= 21:
         return "Busted, dealer wins!"
+    if player.value > 21 and dealer.value > 21:
+        return "Player and dealer both loses!"
 
-def stand_action(player, dealer, deck):
+def stand_action(player1, player2, dealer, deck):
     for i, card in enumerate(dealer.cards):
         if card[2]:
             dealer.cards[i] = (card[0], card[1], False)
@@ -53,14 +55,30 @@ def stand_action(player, dealer, deck):
 
     print(dealer.cards, dealer.value)
 
-    if player.value > 21:
+    if player1.value > 21 or player2.value > 21:
         return "Busted, dealer wins!"
-    elif dealer.value > 21 or player.value > dealer.value:
-        return "Player wins!"
-    elif player.value == dealer.value:
-        return "Tie"
-    elif player.value == 21:
-        return "Blackjack, player wins!"
+    elif player1.value > dealer.value:
+        return "Player1 wins!"
+    elif player2.value > dealer.value:
+        return "Player2 wins!"
+    elif dealer.value > 21 and player1.value > player2.value:
+        return "Player1 wins!"
+    elif dealer.value > 21 and player1.value < player2.value:
+        return "Player 2 wins!"
+    elif player1.value == dealer.value and player2.value > player1.value:
+        return "Player 2 wins!"
+    elif player2.value == dealer.value and player1.value > player2.value:
+        return "player1 wins!"
+    elif player1.value == dealer.value:
+        return "Tie!"
+    elif player1.value == player2.value == dealer.value:
+        return "Tie!"
+    elif player1.value == 21:
+        return "Blackjack, player1 wins!"
+    elif player1.value == 21 and player2.value != 21:
+        return "Blackjack, player1 wins!"
+    elif player2.value == 21 and player2.value != 21:
+        return "Blackjack, player2 wins!"
     else: 
         return "Dealer wins!"
 
