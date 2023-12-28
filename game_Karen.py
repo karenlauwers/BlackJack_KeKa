@@ -26,6 +26,7 @@ click_bet_ok1 = False
 click_bet_ok2 = False 
 click_play = False 
 click_initial_deal = False 
+click_hit1 = False 
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -95,6 +96,9 @@ while running:
     # EVENT IN THE GAME WINDOW. Player clicks on button 'deal cards'.
     if event.type == pygame.MOUSEBUTTONDOWN and initial_deal.check_click(): 
       click_initial_deal = True 
+
+    if event.type == pygame.MOUSEBUTTONDOWN and hit1.check_click(): 
+      click_hit1 = True 
 
     # AF TE WERKEN 
     # EVENT IN THE GAME WINDOW. Player1 clicks 'hit' to get one more card. 
@@ -186,14 +190,16 @@ while running:
 
     # Setings for the play-button: you can only click play if you entered a bet between 1 and 999.
       if betinput_player1 =='0' or len(betinput_player1)<1: 
-        bet_ok1.enabled = False 
+        bet_ok1.enabled = False
         bet_ok1.draw_button()
       else: 
-        bet_ok1.enabled = True 
+        bet_ok1.enabled = True
         bet_ok1.draw_button() 
     
       if click_bet_ok1: 
         play.enabled = True 
+      
+        bet_ok1.enabled = False
 
   # BET WINDOW FOR 2-PLAYERGAME 
   if twoplayergame: 
@@ -289,16 +295,14 @@ while running:
     hand_value_player2.draw_text('topleft', 400, 120)   
 
     # Draw the cards on the screen 
-    player1.draw_firstcard(100, 100)
-    player1.draw_secondcard(120, 100)
-    player1.draw_thirdcard(160, 100)
-    player1.draw_fourthcard(180, 100)  
-    # player1.draw_firstcard(100, 220) dit is alleen om te laten zien waar de kaarten van de split komen, als je een split hebt. Moet nog gedefiniteerd worden.
-    player2.draw_firstcard(490, 100)
-    player2.draw_secondcard(510, 100)
-    player2.draw_thirdcard(550, 100)
-    player2.draw_fourthcard(570, 100)
-    dealer.draw_firstcard(100, 440)
+    player1.draw_card(0, 100, 100)
+    player1.draw_card(1, 120, 100)
+    if len(player1.card_img) > 2:   
+      player1.draw_card(2, 200, 100)
+    player1.draw_card(0, 100, 220)
+    player2.draw_card(0, 490, 100)
+    player2.draw_card(1, 510, 100)   
+    dealer.draw_card(0, 100, 440)
     dealer.hide_card(120, 440)
 
     # Set information on the right bottom of the screen: information about actual round (nog niet klaar), scores (nog niert klaar)
@@ -313,7 +317,7 @@ while running:
 
     if oneplayergame: 
         window.fill((casino_green1), rect=(400,45, 400,305)) 
-        window.fill((casino_green1), rect=(420, 470, 90,31))
+        window.fill((casino_green1), rect=(400, 500, 100,31))
         hit2.enabled = False 
         stand2.enabled = False
         split2.enabled = False 
@@ -331,9 +335,12 @@ while running:
       # initial_deal.draw_button()
       if twoplayergame: 
         initial_deal_twoplayergame()
+        player1.get_filename()
+        player2.get_filename()
+        dealer.get_filename()
         player1.calculate_hand()
         player2.calculate_hand()
-        print(player1.card_img)
+        print(player1.card_img) # print functies moeten niet in het spel, om te zien hoe het werkt 
         print(player1.cards)
         print(player2.cards)
         print(dealer.cards)
@@ -341,8 +348,10 @@ while running:
 
       if oneplayergame: 
         initial_deal_oneplayergame()
+        player1.get_filename()
+        dealer.get_filename()
         player1.calculate_hand()
-        print(player1.cards)
+        print(player1.cards) # print functies moeten niet in het spel, om te zien hoe het werkt
         print(dealer.cards)
         print(player1.value)
 
@@ -351,6 +360,16 @@ while running:
     if len(player1.cards) == 2: 
       initial_deal.enabled = False
       initial_deal.draw_button()
+    
+  # if player1 clicks hit 
+  if oneplayergame: 
+    if click_hit1 == True: 
+      hit_card(player1)
+      player1.get_filename()
+      print(player1.cards)
+      player1.calculate_hand()
+
+  click_hit1 = False 
 
   pygame.display.update()
 pygame.quit()      
