@@ -336,6 +336,13 @@ while running:
       # initial_deal.draw_button()
       if twoplayergame: 
         initial_deal_twoplayergame()
+        player1.get_filename()
+        player1.draw_card()
+        player2.get_filename()
+        player2.draw_card()
+        dealer.get_filename()
+        dealer.draw_card()
+        dealer.hide_card()
         player1.calculate_hand()
         player2.calculate_hand()
         print(player1.cards)
@@ -345,6 +352,11 @@ while running:
     
       if oneplayergame: 
         initial_deal_oneplayergame()
+        player1.get_filename()
+        player1.draw_card()
+        dealer.get_filename()
+        dealer.draw_card()
+        dealer.hide_card()
         player1.calculate_hand()
         print(player1.cards)
         print(dealer.cards)
@@ -359,8 +371,9 @@ while running:
     # HIT: je kan op hit duwen en 1 kaart wordt getrokken.
     # Print functies staan er terug bij voor verduidelijking
     if click_hit1:
-      player1.value = 0
       hit_card(player1)
+      player1.get_filename()
+      player1.draw_card()
       player1.calculate_hand()
       print(player1.cards)
       print(player1.value)
@@ -373,8 +386,9 @@ while running:
       stand1.enabled = False
 
     if click_hit2:
-      player2.value = 0
       hit_card(player2)
+      player2.get_filename()
+      player2.draw_card()
       player2.calculate_hand()
       click_hit2 = False
 
@@ -404,7 +418,7 @@ while running:
       stand2.enabled = False
       stand2.draw_button()
       
-    # One player game werkt precies. 
+    # Dealer blijft 1 kaart trekken ondanks >= 17??
     # Two player game wordt resultaat meteen beslist vooraleer het aan de volgende speler is .... 
     # Hoe maak je dit turn based?
     # Hoe resultaten met text in game window krijgen(player wins, dealer wins....?)
