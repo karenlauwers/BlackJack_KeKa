@@ -53,5 +53,11 @@ bet = GameText('Bet', font_size2, dark_grey)
 # bet_player2 = GameText(f'{betinput_player2}', font_size2, dark_red)
 hand_value = GameText('Value', font_size2, dark_grey)
 dealer_text = GameText('Dealer', font_size2, dark_red)
-score = GameText('Score', font_size2, dark_red)
-round = GameText('Round', font_size2, dark_red)
+round_text = GameText('Round', font_size2, dark_red)
+
+#results 
+blackjack_text = GameText('Blackjack!', font_size2, dark_red)
+tie_text = GameText('It\'s a tie.', font_size2, dark_red) 
+win_text = GameText('You win!', font_size2, dark_red) 
+lose_text = GameText('You lose!', font_size2, dark_red) 
+busted_text = GameText('You\'re busted!', font_size2, dark_red )

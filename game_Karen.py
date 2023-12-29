@@ -5,8 +5,7 @@ from constants import *
 from buttons import *
 from user_input import * 
 from gametext import * 
-from calculate_updateKa import * 
-from blackjack_deck_updateKa import * 
+from calculate_updateKa_2 import * 
 
 # INITIALISE PYGAME
 pygame.init() 
@@ -26,7 +25,17 @@ click_bet_ok1 = False
 click_bet_ok2 = False 
 click_play = False 
 click_initial_deal = False 
+# show_dealer_card = False
 click_hit1 = False 
+click_hit2 = False
+click_stand1 = False
+click_stand2 = False
+# blackjack = False
+# blackjack_tie = False 
+clicks_on_hit = 0
+score = 0 
+click_play_again = False 
+game_finished = False 
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -99,12 +108,20 @@ while running:
 
     if event.type == pygame.MOUSEBUTTONDOWN and hit1.check_click(): 
       click_hit1 = True 
+    
+    if event.type == pygame.MOUSEBUTTONDOWN and hit2.check_click():
+      click_hit2 = True
 
-    # AF TE WERKEN 
-    # EVENT IN THE GAME WINDOW. Player1 clicks 'hit' to get one more card. 
-    # if event.type == pygame.MOUSEBUTTONDOWN and hit1.check_click(): 
-      # click_hit1 = True 
-      # en deze variabele kan in THE GAME gebruikt worden om de functie 'hit_card(player)' op te roepen voor de player die je definieert, in dit geval 'hit_card(player1)
+    # EVENT IN THE GAME WINDOW. Player clicks on button 'stand'.
+    if event.type == pygame.MOUSEBUTTONDOWN and stand1.check_click():
+      click_stand1 = True
+      show_dealer_card = True 
+
+    if event.type == pygame.MOUSEBUTTONDOWN and stand2.check_click():
+      click_stand2 = True
+
+    if event.type == pygame.MOUSEBUTTONDOWN and play_again.check_click():
+      click_play_again = True
 
     #OPMERKING
     # Als we SPLIT toepassen, dan is het niet voldoende om enkel voor player1 en player2 een instance van de class Hand te maken. 
@@ -180,7 +197,7 @@ while running:
       twoplayergame = True 
 
   # BET WINDOW FOR 1PLAYERGAME
-    if oneplayergame: 
+    if click_button_1player: 
       # for 1playergame: hide the player2-part by partly filling the screen. 
       window.fill((casino_green1), rect=(0,270, 400,120)) 
       # Disable the buttons of the previous screen (welcome window with 1- or 2playergamebuttons). 
@@ -202,7 +219,7 @@ while running:
         bet_ok1.enabled = False
 
   # BET WINDOW FOR 2-PLAYERGAME 
-  if twoplayergame: 
+  if click_button_2player: 
     # Settings for the text and buttons for the bet-window in 2-playergame
     # Player 1 is asked to place his bet. Player 2 cannot enter his textbox. 
     betplease.draw_text('topleft', 380, 190)
@@ -292,28 +309,92 @@ while running:
     hand_value_player1 = GameText(f'Value {player1.value}', font_size1, dark_grey) 
     hand_value_player1.draw_text('topleft', 20, 120)   
     hand_value_player2 = GameText(f'Value {player2.value}', font_size1, dark_grey) 
-    hand_value_player2.draw_text('topleft', 400, 120)   
+    hand_value_player2.draw_text('topleft', 400, 120) 
+    if show_dealer_card == True:    
+      hand_value_dealer = GameText(f'Value {dealer.value}', font_size1, dark_grey) 
+      hand_value_dealer.draw_text('topleft', 20, 435) 
 
     # Draw the cards on the screen 
     player1.draw_card(0, 100, 100)
     player1.draw_card(1, 120, 100)
     if len(player1.card_img) > 2:   
       player1.draw_card(2, 200, 100)
-    player1.draw_card(0, 100, 220)
+    if len(player1.card_img) > 3: 
+      player1.draw_card(3, 280, 100)
+    # player1_hand2.draw_card(0, 100, 220)
     player2.draw_card(0, 490, 100)
     player2.draw_card(1, 510, 100)   
     dealer.draw_card(0, 100, 440)
-    dealer.hide_card(120, 440)
+    if show_dealer_card == False : 
+      dealer.hide_card(120, 440)
+    else: 
+      dealer.draw_card(1, 120, 440)
+    if len(dealer.card_img) > 2:
+      dealer.draw_card(2, 200, 440)
+    if len(dealer.card_img) > 3: 
+      dealer.draw_card(3, 280, 440)
 
+# result text on the screen
+    if blackjack1: 
+      blackjack_text.draw_text('topleft', 100, 340)
+      score = int(betinput_player1) + (int(betinput_player1)*1.5)
+      game_finished = True
+    if blackjack_tie1: 
+      tie_text.draw_text('topleft', 100, 340)
+      score = int(betinput_player1) 
+      game_finished = True
+    if blackjack2: 
+      blackjack_text.draw_text('topleft', 490, 340)
+      score = int(betinput_player2)
+      game_finished = True
+    if blackjack_tie2: 
+      tie_text.draw_text('topleft', 490, 340)
+      score = int(betinput_player2)
+      game_finished = True
+    if tie1: 
+      tie_text.draw_text('topleft', 100, 340)  
+      score = int(betinput_player1)    
+    if tie2:
+      tie_text.draw_text('topleft', 490, 340)  
+      score = int(betinput_player2) 
+      game_finished = True
+    if win1:
+      win_text.draw_text('topleft', 100, 340)  
+      score = int(betinput_player1) + (int(betinput_player1)*1)
+    if win2:
+      win_text.draw_text('topleft', 490, 340)  
+      score = int(betinput_player2) + (int(betinput_player2)*1)
+      game_finished = True
+    if lose1:
+      lose_text.draw_text('topleft', 100, 340)  
+      score = 0
+      game_finished = True
+    if lose2:
+      lose_text.draw_text('topleft', 490, 340) 
+      score = 0 
+      game_finished = True
+    if busted_player1: 
+      busted_text.draw_text('topleft', 100, 340)  
+      score = 0
+    if busted_player2: 
+      busted_text.draw_text('topleft', 490, 340)  
+      score = 0
+      game_finished = True
+    if busted_dealer: 
+      busted_text.draw_text('topleft', 100, 540)  
+      game_finished = True
+   
     # Set information on the right bottom of the screen: information about actual round (nog niet klaar), scores (nog niert klaar)
-    round.draw_text('topleft', 400, 390)
-    score.draw_text('topleft', 400, 430)
+    round_text.draw_text('topleft', 400, 390)
+    score_text = GameText(f'Score   {score}', font_size2, dark_red)
+    score_text.draw_text('topleft', 400, 430)
     player1_text.color = dark_grey
     player1_text.draw_text('topleft', 420, 465)
     player2_text.color = dark_grey 
     player2_text.draw_text('topleft', 420, 495)
     dealer_text.color = dark_grey
     dealer_text.draw_text('topleft', 420, 525)
+    play_again.draw_button()
 
     if oneplayergame: 
         window.fill((casino_green1), rect=(400,45, 400,305)) 
@@ -331,30 +412,23 @@ while running:
   # Want er zitten nog geen beelden in het spel, waardoor je op het scherm nog niet ziet wat er bedeeld wordt. 
   # De hand_value wordt wel berekend, ook al staat het hogerop (zie lijn 256-259)
     if click_initial_deal == True: # becomes True by clicking on the button "deal cards", zie event loop
-      # initial_deal.enabled = True
-      # initial_deal.draw_button()
       if twoplayergame: 
+        hit1.enabled = True 
+        stand1.enabled = True 
+        hit2.enabled = True
+        stand2.enabled = True 
         initial_deal_twoplayergame()
-        player1.get_filename()
-        player2.get_filename()
-        dealer.get_filename()
-        player1.calculate_hand()
-        player2.calculate_hand()
-        print(player1.card_img) # print functies moeten niet in het spel, om te zien hoe het werkt 
-        print(player1.cards)
-        print(player2.cards)
-        print(dealer.cards)
-        print(player1.value)   
 
       if oneplayergame: 
+        hit1.enabled = True 
+        stand1.enabled = True
         initial_deal_oneplayergame()
-        player1.get_filename()
-        dealer.get_filename()
-        player1.calculate_hand()
-        print(player1.cards) # print functies moeten niet in het spel, om te zien hoe het werkt
-        print(dealer.cards)
-        print(player1.value)
-
+        if player1.value == 21: 
+          if dealer.value == 21: 
+            blackjack_tie1 = True
+          elif dealer.value != 21: 
+              blackjack1 = True
+        
     click_initial_deal = False   
 
     if len(player1.cards) == 2: 
@@ -364,13 +438,53 @@ while running:
   # if player1 clicks hit 
   if oneplayergame: 
     if click_hit1 == True: 
+      clicks_on_hit += 1
       hit_card(player1)
-      player1.get_filename()
-      print(player1.cards)
-      player1.calculate_hand()
+      print(dealer.value)
+      if player1.value > 21:
+        busted_player1 = True
+      if clicks_on_hit == 2: 
+        hit1.enabled = False 
+        hit1.draw_button()
+        stand1.enabled = False 
+        stand_action()
+        if player1.value > 21:
+          busted_player1 = True
+        if dealer.value > 21: 
+          busted_dealer = True 
+          win1 = True 
+        else: 
+          if player1.value > dealer.value: 
+            win1 = True 
+          if player1.value == dealer.value: 
+            tie1 = True                        
+          if player1.value < dealer.value: 
+            lose1 = True 
 
-  click_hit1 = False 
+    click_hit1 = False 
+       
+    if click_stand1 == True:  
+      stand_action() 
+      if player1.value > 21:
+        busted_player1 = True
+      if dealer.value > 21: 
+        busted_dealer = True 
+        win1 = True 
+      else: 
+        if player1.value > dealer.value: 
+          win1 = True 
+        if player1.value == dealer.value: 
+          tie1 = True                        
+        if player1.value < dealer.value: 
+          lose1 = True 
 
+    click_stand1 = False 
+    
+  if game_finished: 
+    play_again.enabled = True 
+    if click_play_again == True: 
+      click_button_1player = True
+      
   pygame.display.update()
 pygame.quit()      
 

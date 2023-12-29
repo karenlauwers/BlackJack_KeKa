@@ -1,5 +1,5 @@
 import pygame
-from blackjack_deck_updateKa import Deck, Hand
+from blackjack_deck_updateKa_2 import Deck, Hand
 
 # Use the Deck and Hand classes
 deck = Deck()
