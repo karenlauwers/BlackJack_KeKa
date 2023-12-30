@@ -35,25 +35,22 @@ welcome = GameText('Welcome to BlackJack', font_size3, dark_red)
 #players input their name
 # name_question = GameText('What is your name', font_size2, dark_red)
 
-#bet display 1playergame
+#bet display 
 bet_title = GameText('Make a bet', font_size3, dark_red)
 disclaimer = GameText('For the sake of your bank account, your bet must be lower than 1000.', font_size1, black)
 explanation = GameText('Click the box and enter a number between 1 en 999. To change your bet, use backspace.', font_size1, black)
-player1_text = GameText('Player 1', font_size2, dark_red)
-
-#bet display 2playergame
-player2_text = GameText('Player 2', font_size2, dark_grey)
+player_text = GameText('Player', font_size2, dark_red)
 betplease = GameText('Your bet, please.', font_size2, dark_red) 
 
 #game display
-# player1 = use the object 'player1' that we already created (zie hierboven)
-gametitle = GameText('KeKa\'s BlackJack', font_size3, dark_red)
+# player = use the object 'player' that we already created (zie hierboven)
+gametitle = GameText('KeKa\'s BlackJack', font_size2, dark_red)
 bet = GameText('Bet', font_size2, dark_grey)
-# bet_player1 = GameText(f'{betinput_player1}', font_size2, dark_red) # must be placed in the game - after the input has been created, if not the string is still empty
-# bet_player2 = GameText(f'{betinput_player2}', font_size2, dark_red)
 hand_value = GameText('Value', font_size2, dark_grey)
+hand_text = GameText('Hand', font_size1, dark_grey)
+split_hand_text = GameText('Split Hand', font_size1, dark_grey)
 dealer_text = GameText('Dealer', font_size2, dark_red)
-round_text = GameText('Round', font_size2, dark_red)
+round_text = GameText('Round', font_size2, white)
 
 #results 
 blackjack_text = GameText('Blackjack!', font_size2, dark_red)

@@ -2,6 +2,16 @@ import pygame
 import random
 from constants import window
 
+blackjack = False
+blackjack_tie = False 
+busted_player = False
+busted_dealer = False 
+win = False
+lose = False 
+tie = False
+show_dealer_card = False 
+
+# MAKE THE BLACKJACK DECK OUT OF 3 CARD DECKS: A CLASS. 
 # List of card ranks and suits. Also number of decks used in the game
 RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 SUITS = ['C', 'S', 'H', 'D']
@@ -47,34 +57,19 @@ class Deck:
         if len(self.cards) > 1:
             return self.cards.pop()
 
-# Hand object with empty list of cards and empty list of images. A value is set to 0
-# Original function: Hand class inherits from the Deck class
-# VRAAG: waarom inherits van de Deck-class? Er is geen enkele functie hierboven die je met een hand direct nodig hebt van de Deck-class.
-        # Ik weet het niet zeker want ik weet niks zeker. 
-        # Maar als je in een geerfde functie een nieuwe init schrijft, dan wordt de init van de parent-class overschreven. 
-        # Je kan wel de functies van de parent-class toepasssen op de hand. Maar zullen we dat ergens gebruiken? 
-        # bv: build: nvt, shuffle: je gaat je hand niet shuffelen, 
-        # deal: je gebruikt deal wel om de hand te maken met de functie add_card, maar die kan je ook oproepen zonder dat Hand erft van Deck. 
-        # Misschien mis ik iets dat later in het spel van belang zal zijn. Ik heb het nu weggelaten en het werkt evenzeer.  
+# CREATE HAND OF CARDS FOR PLAYER AND DEALER: A CLASS. 
 class Hand:
     def __init__(self):
         self.cards = []
         self.card_img = []
         self.value = 0
-    
-# Adds a card to the empty cards list
-# Hide functie toegevoegd -- waarom? wat doet dat? 
-    def add_card(self, card, hide=False):
-        card_with_hide = (card[0], card[1], hide)
-        self.cards.append(card_with_hide)
+      
+    def add_card(self, card):
+        self.cards.append(card)
 
 # Calculates the value of the hand
-# Original functie maakt eerst een lijst van de rank van de kaarten, dan een lijst van de non-aces en evt. ook nog een lijst van de aces.
-# Ik denk dat het zo ook kan? 
-# Ik heb het vastzetten van de ace op 1 gewijzigd: ace is 10 als de value <= 10 en anders is het 1
-# self.value = 0 toegevoegd. Bij het telkens opnieuw berekenen van de hand wordt waarde op 0 gezet
     def calculate_hand(self):
-        self.value = 0           
+        # self.value = 0      dit toegevoegd in de berekening van de score zelf, als je klikt. Uit te zoeken waarom ht was dat dat hier niet kan.     
         for card in self.cards:
             if card[1] in 'JQK':
                 self.value += 10
@@ -93,23 +88,17 @@ class Hand:
     def get_filename(self):
         for card in self.cards:
             cards = card[1] + card[2]
-            if cards not in self.card_img: # in ons spel met 3 decks of cards kan het wel dat je 2 dezelfde kaarten hebt... en dan wordt die in huidige opzet niet op het scherm getekend... moet nog iets aan veranderen. Ofwel aan deze functie, ofwel aan opzet van het tekenen.  
+            if cards not in self.card_img: # Nu we het deck samenstellen met het decknr erbij, kan dit blijven staan. 
                 self.card_img.append(cards)
 
     # Function to draw the image of the card on the screen. 
     # Function to be called in the game --> see game window.
-                # Veel geprobeerd met deze functie: ik heb de meest eenvoudige manier gevonden, denk ik: 
-                # 1 functie om alle kaarten op te roepen.
-                    # is mogelijk omdat we de decks in het speel-deck onderscheiden en geen dubbels laten voorkomen
-                    # omdat we de index van card_img-list als variabele opnemen in de functie\
-                    # dit betekent wel dat je die moet aangeven als je de functie oproept
-                    # in het spel zal je zien dat we de functie maar oproepen als de len(card_img) lang genoeg is, anders krijg je een index out of range
-                  
+                                 
     def draw_card(self, card_img_index, x_pos, y_pos):  
         self.x_pos =  x_pos
         self.y_pos = y_pos
 
-        # self.get_filename()
+        # self.get_filename() # deze functie moet je niet hier oproepen, maar in the game zelf. Nog uit te werken waarom dat best zo is. 
 
         if len(self.card_img) > 0: 
             card_image = pygame.image.load('images/' + self.card_img[card_img_index] + '.png')
@@ -119,11 +108,7 @@ class Hand:
 
             window.blit(card_image, card_imageRect)
 
-    
     # Draw the back of the card
-    # Deze functie toe te passen op de 2e kaart van de dealer. 
-    # Later in het spel moet dit weg/overschreven worden met de 2e kaart van de dealer 
-    # (dat kan met functie draw_secondcard, maar dan wel zo te programmeren dat dit pas komt nadat de berekening moet gebeuren,.
     def hide_card(self, x_pos, y_pos): 
         self.x_pos =  x_pos
         self.y_pos = y_pos
@@ -136,3 +121,82 @@ class Hand:
 
             window.blit(hide_image, hide_imageRect)
 
+# USE THE DECK AND HAND CLASS
+deck = Deck()
+deck.shuffle()
+
+# Create hands for players and the dealer
+player = Hand()
+player_hand2 = Hand() # dit is de hand die je nodig hebt voor de split. Te bekijken of je die sowieso al mee in de lisjt kan steken, ook als je de split nog niet gebruikt. Of mss moet je dan een aparte lijst maken. Nog niet geprobeerd.
+dealer = Hand()
+
+# Two players list or One player list
+# In het spel kan je kiezen om met 1 of met 2 spelers te spelen. 
+players = [player]
+
+# Deal two cards to player and dealer: 
+def initial_deal():
+    for p in players: 
+    # dit hoeft eigenlijk geen for loop meer te zijn als je maar 1 speler hebt. 
+    # Wellicht mag het uiteindelijk weg. Want als er een split komt, dan doe je een deal voor 1 speler. 
+    # Maar niet opnieuw voor de dealer. 
+    # Ik denk dat het mss beter is om de deal voor speler en dealer apart te maken. 
+    # Dan kan je de functie voor de deal aan de speler opnieuw oproepen als speler split kiest. 
+        for i in range(2):
+            p.add_card(deck.deal())
+    dealer.add_card(deck.deal())
+    dealer.add_card(deck.deal())
+    player.get_filename()
+    dealer.get_filename()
+    player.value = 0 
+    player.calculate_hand()
+    dealer.value = 0
+    dealer.calculate_hand()
+
+# Deal another card als - wordt gebruikt wanneer de speler op hit klikt 
+def hit_card(): 
+    player.add_card(deck.deal())
+    player.get_filename()
+    player.value = 0 
+    player.calculate_hand()
+    dealer.value = 0
+    dealer.calculate_hand()
+
+def stand_action(): 
+    dealer.get_filename()
+    dealer.value = 0 
+    dealer.calculate_hand()  
+    while dealer.value < 17:
+        dealer.add_card(deck.deal())
+        dealer.value = 0
+        dealer.calculate_hand() 
+    dealer.get_filename()
+
+def check_blackjack():
+    for p in players: 
+        if p.value == 21: 
+           if dealer.value == 21: 
+            blackjack_tie = True
+           elif dealer.value != 21: 
+            blackjack = True
+    
+# Checks if player is busted (>21). If player is busted, he always loses, even if dealer is busted as well. 
+def check_busted_player1(): 
+    if player.value > 21:
+        busted_player = True
+
+# Checks the result in case there is no blackjack or player's not busted 
+# ik heb deze functie gemaakt om ze op te kunnen roepen in the game. Maar dat lukt me niet. 
+# Als ik oproep in de game, dan doet dat niks. Ik wil nog uitzoeken hoe dat komt.
+# nu heb ik deze code in the game gezet en dat werkt wel
+def check_result_player1(): 
+    if dealer.value > 21: 
+        busted_dealer = True 
+        win = True 
+    else: 
+        if player.value > dealer.value: 
+            win = True 
+        if player.value == dealer.value: 
+            tie = True                        
+        if player.value < dealer.value: 
+            lose = True 

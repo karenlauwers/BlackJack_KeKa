@@ -46,19 +46,12 @@ class Button:
       return False 
 
 # BUTTONS 
-button_1player = Button('1 player',320, 150, True, 110, 50)
-button_2player = Button('2 players', 320, 220, True, 110, 50)   
-bet_ok1 = Button('Ok', 300, 180, False, 70, 50) # button to click in betscreen by player 1, as well in 1- as 2playergame
-bet_ok2 = Button('Ok', 300, 290, False, 70,50) # button to click in betscreen by player 2 in 2playergame
-play = Button('Play', 630, 240, False, 70, 50) 
-hit1 = Button('Hit', 100, 50, False, 70, 40)
-stand1 = Button('Stand', 170, 50, False, 70, 40)
-split1 = Button('Split', 240, 50, False, 70, 40 )
-double1 = Button('Double', 310, 50, False, 75, 40)
-hit2 = Button('Hit', 490, 50, False, 70, 40)
-stand2 = Button('Stand', 560, 50, False, 70, 40)
-split2 = Button('Split', 630, 50, False, 70, 40)
-double2 = Button('Double', 700, 50, False, 75, 40)
-initial_deal = Button('Deal cards', 100, 390, True, 140, 40)
-quit_button = Button('Quit', 700, 540, True, 70, 40)
-play_again = Button('Play again', 700, 500, False, 120, 40)
+bet_ok = Button('Ok', 365, 250, False, 70, 40) # button to click in betscreen by player 1, as well in 1- as 2playergame
+play = Button('Play', 365, 300, False, 70, 40) 
+hit = Button('Hit', 257, 80, False, 70, 40)
+stand = Button('Stand', 327, 80, False, 70, 40)
+split = Button('Split', 397, 80, False, 70, 40 )
+double = Button('Double', 467, 80, False, 75, 40)
+initial_deal_button = Button('Deal cards', 330, 375, True, 140, 40)
+quit_button = Button('Quit', 660, 520, True, 70, 40)
+play_again = Button('Play again', 660, 480, False, 120, 40)
