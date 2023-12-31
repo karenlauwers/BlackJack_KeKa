@@ -29,18 +29,16 @@ class GameText:
         window.blit(gametext, textboxRect)
 
 # GAME TEXTS AND TEXTBOXES  
-#welcome display  
-welcome = GameText('Welcome to BlackJack', font_size3, dark_red)
-
-#players input their name
-# name_question = GameText('What is your name', font_size2, dark_red)
+#welcome display & players input their name
+welcome = GameText('Welcome', font_size3, dark_red)
+name_question = GameText('What is your name?', font_size2, dark_red)
+name_explanation = GameText('Click on the box and enter your name.', font_size1, black)
 
 #bet display 
 bet_title = GameText('Make a bet', font_size3, dark_red)
 disclaimer = GameText('For the sake of your bank account, your bet must be lower than 1000.', font_size1, black)
 explanation = GameText('Click the box and enter a number between 1 en 999. To change your bet, use backspace.', font_size1, black)
 player_text = GameText('Player', font_size2, dark_red)
-betplease = GameText('Your bet, please.', font_size2, dark_red) 
 
 #game display
 # player = use the object 'player' that we already created (zie hierboven)
@@ -50,7 +48,6 @@ hand_value = GameText('Value', font_size2, dark_grey)
 hand_text = GameText('Hand', font_size1, dark_grey)
 split_hand_text = GameText('Split Hand', font_size1, dark_grey)
 dealer_text = GameText('Dealer', font_size2, dark_red)
-round_text = GameText('Round', font_size2, white)
 
 #results 
 blackjack_text = GameText('Blackjack!', font_size2, dark_red)
@@ -58,3 +55,4 @@ tie_text = GameText('It\'s a tie.', font_size2, dark_red)
 win_text = GameText('You win!', font_size2, dark_red) 
 lose_text = GameText('You lose!', font_size2, dark_red) 
 busted_text = GameText('You\'re busted!', font_size2, dark_red )
+test = GameText('Trying to play again', font_size5, white)

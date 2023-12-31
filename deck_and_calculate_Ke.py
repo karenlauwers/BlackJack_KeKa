@@ -95,7 +95,7 @@ class Hand:
     # Function to be called in the game --> see game window.
                                  
     def draw_card(self, card_img_index, x_pos, y_pos):  
-        self.x_pos =  x_pos
+        self.x_pos = x_pos
         self.y_pos = y_pos
 
         # self.get_filename() # deze functie moet je niet hier oproepen, maar in the game zelf. Nog uit te werken waarom dat best zo is. 
