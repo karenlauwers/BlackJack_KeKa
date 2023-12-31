@@ -135,23 +135,36 @@ dealer = Hand()
 players = [player]
 
 # Deal two cards to player and dealer: 
-def initial_deal():
-    for p in players: 
+def initial_deal_player():
+    for i in range(2):
+        player.add_card(deck.deal())
+    player.get_filename()
+    player.value = 0
+    player.calculate_hand()
+
+def initial_deal_dealer():
+    for i in range(2):
+        dealer.add_card(deck.deal())
+    dealer.get_filename()
+    dealer.value = 0
+    dealer.calculate_hand()
+
+# def initial_deal():
     # dit hoeft eigenlijk geen for loop meer te zijn als je maar 1 speler hebt. 
     # Wellicht mag het uiteindelijk weg. Want als er een split komt, dan doe je een deal voor 1 speler. 
     # Maar niet opnieuw voor de dealer. 
     # Ik denk dat het mss beter is om de deal voor speler en dealer apart te maken. 
     # Dan kan je de functie voor de deal aan de speler opnieuw oproepen als speler split kiest. 
-        for i in range(2):
-            p.add_card(deck.deal())
-    dealer.add_card(deck.deal())
-    dealer.add_card(deck.deal())
-    player.get_filename()
-    dealer.get_filename()
-    player.value = 0 
-    player.calculate_hand()
-    dealer.value = 0
-    dealer.calculate_hand()
+    # for i in range(2):
+    #     player.add_card(deck.deal())
+    # dealer.add_card(deck.deal())
+    # dealer.add_card(deck.deal())
+    # player.get_filename()
+    # dealer.get_filename()
+    # player.value = 0 
+    # player.calculate_hand()
+    # dealer.value = 0
+    # dealer.calculate_hand()
 
 # Deal another card als - wordt gebruikt wanneer de speler op hit klikt 
 def hit_card(): 
@@ -171,6 +184,24 @@ def stand_action():
         dealer.value = 0
         dealer.calculate_hand() 
     dealer.get_filename()
+
+# SPLIT FUNCTION:
+def can_split(hand):
+    return len(hand.cards) == 2 and hand.cards[0][1] == hand.cards[1][1]
+
+def split_hand(player_hand2, deck):
+    if can_split(player_hand2):
+        new_hand = Hand()
+        new_hand.add_card(player_hand2.cards.pop)
+
+        player_hand2.add_card(deck.deal)
+        player_hand2.get_filename()
+        new_hand.add_card(deck.deal)
+        new_hand.get_filename()
+
+        return new_hand
+    else:
+        return None
 
 def check_blackjack():
     for p in players: 
