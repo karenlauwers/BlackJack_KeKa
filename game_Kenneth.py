@@ -28,6 +28,7 @@ clicks_on_hit = 0
 score = 0 
 click_play_again = False 
 game_finished = False 
+click_split = False
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -80,8 +81,13 @@ while running:
       click_stand = True
       show_dealer_card = True 
 
+    # EVENT IN THE GAME WINDOW. Player clicks on button 'play again'.
     if event.type == pygame.MOUSEBUTTONDOWN and play_again.check_click():
       click_play_again = True
+    
+    # EVENT IN THE GAME WINDOW. Player clicks on button 'split'.
+    if event.type == pygame.MOUSEBUTTONDOWN and split.check_click():
+      click_split = True
 
 #--END OF EVENTS-- 
 #===============================================================================================================
@@ -173,10 +179,11 @@ while running:
       player.draw_card(2, 200, 190)
     if len(player.card_img) > 3: 
       player.draw_card(3, 280, 190)
-    player.draw_card(0, 450,190) # only to show where the split hand cards will be drawn 
-    player.draw_card(0, 470, 190) # only to show where the split hand cards will be drawn 
-    player.draw_card(0, 550, 190) # only to show where the split hand cards will be drawn 
-    player.draw_card(0, 630, 190) # only to show where the split hand cards will be drawn 
+    if split_hand(player_hand2, deck):
+      player_hand2.draw_card(0, 450,190)  # only to show where the split hand cards will be drawn 
+      player_hand2.draw_card(0, 470, 190) # only to show where the split hand cards will be drawn 
+      player_hand2.draw_card(0, 550, 190) # only to show where the split hand cards will be drawn 
+      player_hand2.draw_card(0, 630, 190) # only to show where the split hand cards will be drawn 
     dealer.draw_card(0, 270, 450)
     if show_dealer_card == False : 
       dealer.hide_card(290, 450)
@@ -232,7 +239,9 @@ while running:
     if click_initial_deal == True: # becomes True by clicking on the button "deal cards", zie event loop
       hit.enabled = True 
       stand.enabled = True
-      initial_deal()
+      split.enabled = True
+      initial_deal_player()
+      initial_deal_dealer()
       if player.value == 21: 
         if dealer.value == 21: 
           blackjack_tie = True
@@ -289,7 +298,29 @@ while running:
           lose = True 
 
     click_stand = False 
-    
-  pygame.display.update()
-pygame.quit()      
 
+    if click_split == True:
+      split.enabled = False
+      split_hand(player_hand2, deck)
+    
+    click_split = False
+
+    if click_play_again == True:
+      player = Hand()
+      dealer = Hand()
+      deck.shuffle()
+      active_betRect = False
+      click_bet_ok = False 
+      click_play = False
+      click_initial_deal = False 
+      click_hit = False 
+      click_stand = False
+      clicks_on_hit = 0
+      score = 0 
+      game_finished = False
+    
+    click_play_again == False
+    # Keert terug naar bet screen, maar wanneer op play wordt geklikt ==> spel wordt niet gestart?
+
+  pygame.display.update()
+pygame.quit()
