@@ -5,7 +5,8 @@ from constants import *
 pygame.init()
 
 # EVENTUEEL TOE TE VOEGEN #USER INPUT: PLAYER'S NAME.
-# player_name = ''
+nameinput_player = ''
+nameinput_playerRect = pygame.Rect(320, 220, 140, 40)
 
 #USER INPUT: BET. Player makes a bet, can only input numbers
 betinput_player = ''

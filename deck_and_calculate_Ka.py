@@ -21,7 +21,7 @@ DECK_COUNT = 3
 # If we create an object of the class, the function build is called and a card deck is created, consisting of the number of decks we have defined in DECK_COUNT.
 class Deck:
     def __init__(self):
-        self.cards = []
+        self.cards_deck = []
         self.build()
 
 # Build function: populates cards list with value from the list RANKS and suits from the list SUITS.
@@ -45,32 +45,32 @@ class Deck:
         for i in range(DECK_COUNT):
             for value in RANKS:
                 for suit in SUITS:
-                    self.cards.append((i, value, suit))
+                    self.cards_deck.append((i, value, suit))
 
 # Shuffle method: shuffles the deck
     def shuffle(self):
-        random.shuffle(self.cards)
+        random.shuffle(self.cards_deck)
     
 # Deal method: pops a card from the deck if the deck consists of more then 1 card
 # VRAAG: Waarom niet >=1? je kan nog 1 kaart delen als er nog 1 kaart overblijft. Maar dan kan je de startdeal niet doen. Ik weet niet of het belangrijk is.
     def deal(self):
-        if len(self.cards) > 1:
-            return self.cards.pop()
+        if len(self.cards_deck) > 1:
+            return self.cards_deck.pop()
 
 # CREATE HAND OF CARDS FOR PLAYER AND DEALER: A CLASS. 
 class Hand:
     def __init__(self):
-        self.cards = []
+        self.cards_hand = []
         self.card_img = []
         self.value = 0
       
     def add_card(self, card):
-        self.cards.append(card)
+        self.cards_hand.append(card)
 
 # Calculates the value of the hand
     def calculate_hand(self):
         # self.value = 0      dit toegevoegd in de berekening van de score zelf, als je klikt. Uit te zoeken waarom ht was dat dat hier niet kan.     
-        for card in self.cards:
+        for card in self.cards_hand:
             if card[1] in 'JQK':
                 self.value += 10
             elif card[1] == 'A': 
@@ -86,7 +86,7 @@ class Hand:
     # De filename van de files met de images van de kaarten zijn ook zo opgebouwd, bv. 10 hearts = 10H
     # Voegt de string toe aan de lijst cards_img als die nog niet bestaat. 
     def get_filename(self):
-        for card in self.cards:
+        for card in self.cards_hand:
             cards = card[1] + card[2]
             if cards not in self.card_img: # Nu we het deck samenstellen met het decknr erbij, kan dit blijven staan. 
                 self.card_img.append(cards)
@@ -97,8 +97,6 @@ class Hand:
     def draw_card(self, card_img_index, x_pos, y_pos):  
         self.x_pos =  x_pos
         self.y_pos = y_pos
-
-        # self.get_filename() # deze functie moet je niet hier oproepen, maar in the game zelf. Nog uit te werken waarom dat best zo is. 
 
         if len(self.card_img) > 0: 
             card_image = pygame.image.load('images/' + self.card_img[card_img_index] + '.png')
@@ -163,14 +161,16 @@ def hit_card():
     dealer.calculate_hand()
 
 def stand_action(): 
-    dealer.get_filename()
+    print('dealer cards before loop', dealer.card_img)
     dealer.value = 0 
     dealer.calculate_hand()  
     while dealer.value < 17:
+        print('dealer cards at start of loop', dealer.card_img)
         dealer.add_card(deck.deal())
         dealer.value = 0
         dealer.calculate_hand() 
     dealer.get_filename()
+    print('dealer cards after loop', dealer.card_img)
 
 def check_blackjack():
     for p in players: 
