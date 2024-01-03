@@ -28,6 +28,7 @@ click_stand = False
 # blackjack = False
 # blackjack_tie = False 
 clicks_on_hit = 0
+clicks_on_next_round = 0 
 score = 0 
 click_play_again = False 
 game_finished = False 
@@ -37,7 +38,6 @@ blackjack_scorefixer = False
 tie_scorefixer = False 
 win_scorefixer = False 
 lose_scorefixer = False
-wait_a_second = False 
 
 #--END OF AID VARIABLES-- 
 #==================================================================================================================
@@ -196,39 +196,31 @@ while running:
     playername.draw_text('center', window_width/2, 60)
     hit.draw_button()
     stand.draw_button()
-    split.draw_button()
-    double.draw_button()
     dealer_text.color = dark_red
     dealer_text.draw_text('center', window_width/2, 360)
     initial_deal_button.draw_button()
+    next_round.draw_button()
     quit_button.draw_button() 
 
     # The bet of the player's is put on the screen with an f-string. 
     # Object of class GameText is created here, because the variable betinput_player must be filled by the player(s).
     bet_player = GameText(f'Bet     {betinput_player}€', font_size1, dark_grey) 
-    bet_player.draw_text('topleft', 100, 120)
-    bet_player.draw_text('topleft', 635, 120)
+    bet_player.draw_text('topleft', 370, 120)
     hand_value_player = GameText(f'Value  {player.value}', font_size1, dark_grey) 
-    hand_value_player.draw_text('topleft', 100, 140)   
-    hand_value_player.draw_text('topleft', 635, 140)  # only to show where the text will be drawn if split hand
+    hand_value_player.draw_text('topleft', 370, 140)   
     if show_dealer_card == True:    
       hand_value_dealer = GameText(f'Value {dealer.value}', font_size1, dark_grey) 
       hand_value_dealer.draw_text('topleft', 360, 420) 
 
     # Draw the cards on the screen 
-    hand_text.draw_text('topleft', 100, 160)
-    split_hand_text.draw_text('topleft', 635, 160)
+    # hand_text.draw_text('topleft', 100, 160)
     if len(player.card_img) > 1:  
-      player.draw_card(0, 100, 190)
-      player.draw_card(1, 120, 190)
+      player.draw_card(0, 270, 180)
+      player.draw_card(1, 290, 180)
     if len(player.card_img) > 2:   
-      player.draw_card(2, 200, 190)
+      player.draw_card(2, 370, 180)
     if len(player.card_img) == 4: 
-      player.draw_card(3, 280, 190)
-    # player.draw_card(0, 450,190) # only to show where the split hand cards will be drawn 
-    # player.draw_card(0, 470, 190) # only to show where the split hand cards will be drawn 
-    # player.draw_card(0, 550, 190) # only to show where the split hand cards will be drawn 
-    # player.draw_card(0, 630, 190) # only to show where the split hand cards will be drawn 
+      player.draw_card(3, 450, 180)
     dealer.draw_card(0, 270, 450)
     if show_dealer_card == False : 
       dealer.hide_card(290, 450)
@@ -236,7 +228,7 @@ while running:
       dealer.draw_card(1, 290, 450)
     if len(dealer.card_img) > 2:
       dealer.draw_card(2, 370, 450)
-    if len(dealer.card_img) == 4 : 
+    if len(dealer.card_img) == 4: 
       dealer.draw_card(3, 450, 450)
 
 # Result text on the screen -
@@ -247,15 +239,15 @@ while running:
       hit.enabled = False
       stand.enabled = False 
       if blackjack: 
-        blackjack_text.draw_text('topleft', 100, 300) 
+        blackjack_text.draw_text('center', window_width/2, 310) 
       if blackjack_tie or tie: 
-        tie_text.draw_text('topleft', 100, 300)
+        tie_text.draw_text('center', window_width/2, 310)
       if win:
-        win_text.draw_text('topleft', 100, 300) 
+        win_text.draw_text('center', window_width/2, 310) 
       if lose:
-        lose_text.draw_text('topleft', 100, 300)  
+        lose_text.draw_text('center', window_width/2, 310)  
       if busted_player: 
-        busted_text.draw_text('topleft', 100, 300)  
+        busted_text.draw_text('center', window_width/2, 310)  
       if betinput_player != '': 
         if blackjack_scorefixer: 
           score += int(betinput_player) + (float(betinput_player)*1.5)
@@ -275,12 +267,12 @@ while running:
       else: 
         round_finished = False    
         game_finished = True 
-
+      
       # End text on the screen after 5 rounds 
       if game_finished: 
-        end_of_game = GameText('Thanks for playing BlackJack with us', font_size3, yellow_gold)
+        end_of_game = GameText('Thanks for playing BlackJack with us.', font_size3, yellow_gold)
         end_of_game.draw_text('center', window_width/2, 160)
-        your_total_bet_was = GameText(f'Your total bet was  {5*float(betinput_player)}€.', font_size2, black)
+        your_total_bet_was = GameText(f'Your total bet was 5 x {betinput_player}€, so {5*float(betinput_player)}€.', font_size2, black)
         your_total_bet_was.draw_text('center', window_width/2, 200) 
         your_final_score_is = GameText(f'Your final score is  {score}€.', font_size2, black)
         your_final_score_is.draw_text('center', window_width/2, 230)
@@ -303,12 +295,14 @@ while running:
     score_text = GameText(f'Score   {score}€', font_size2, white)
     score_text.draw_text('topleft', 20, 520)  
 
+
 #--END OF WINDOW SETTING-- 
 #=================================================================================================================
 #=================================================================================================================
 # THE GAME 
   # INITIAL DEAL: 
   if click_initial_deal == True: # becomes True by clicking on the button "deal cards", zie event loop
+    round_playing = True 
     hit.enabled = True 
     hit.draw_button()
     stand.enabled = True
@@ -320,7 +314,7 @@ while running:
         tie_scorefixer  = True 
       elif dealer.value != 21: 
         blackjack = True
-        blackjack_scorefixer = True 
+        blackjack_scorefixer = True
 
   click_initial_deal = False   
 
@@ -328,12 +322,10 @@ while running:
     initial_deal_button.enabled = False
     initial_deal_button.draw_button()
     
-  # if player clicks hit 
+  # if player clicks hit1 for hand 1
   if click_hit == True: 
     clicks_on_hit += 1
     hit_card()
-    next_round.enabled = False 
-    next_round.draw_button()
     if player.value > 21:
       busted_player = True
       lose_scorefixer = True 
@@ -370,8 +362,6 @@ while running:
   if click_stand == True:  
     stand.enabled = False 
     stand_action() 
-    next_round.enabled = False 
-    next_round.draw_button()
     if player.value > 21:
       busted_player = True
       lose_scorefixer = True 
@@ -389,19 +379,23 @@ while running:
         lose_scorefixer = True 
 
   click_stand = False 
- 
+
   if round_finished: 
-     next_round.enabled = True
-     next_round.draw_button()
-  if game_finished: 
+    next_round.enabled = True
+    next_round.draw_button()
+    round_finished = False # zo wordt de next_round-button terug op inactief gezet en kan je niet meer op next round klikken tot de ronde gedaan is
+  if game_finished:
     next_round.enabled = False 
     next_round.draw_button()
-  
+
   if click_next_round: 
     round += 1
+    clicks_on_next_round += 1
     deck.shuffle()
     initial_deal_button.enabled = True 
     initial_deal_button.draw_button()
+    next_round.enabled = False 
+    next_round.draw_button
     del(player.cards_hand[:])
     del(player.card_img[:])
     del(dealer.cards_hand[:])
@@ -424,10 +418,11 @@ while running:
     lose = False 
     tie = False
     show_dealer_card = False 
-    next_round.enabled = False 
-    next_round.draw_button()
   
   click_next_round = False 
+
+  if clicks_on_next_round == 4: 
+    game_finished = True 
 
   pygame.display.update()
 

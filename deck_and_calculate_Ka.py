@@ -164,8 +164,8 @@ def stand_action():
     print('dealer cards before loop', dealer.card_img)
     dealer.value = 0 
     dealer.calculate_hand()  
-    while dealer.value < 17:
-        print('dealer cards at start of loop', dealer.card_img)
+    while dealer.value < 17 and len(dealer.cards_hand) < 4:
+        print('dealer cards after if', dealer.card_img)
         dealer.add_card(deck.deal())
         dealer.value = 0
         dealer.calculate_hand() 

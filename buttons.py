@@ -49,10 +49,8 @@ class Button:
 start_game = Button('Start game', 320, 300, False, 140, 40)
 bet_ok = Button('Ok', 365, 250, False, 70, 40) # button to click in betscreen by player 1, as well in 1- as 2playergame
 play = Button('Play', 365, 300, False, 70, 40) 
-hit = Button('Hit', 257, 80, False, 70, 40)
-stand = Button('Stand', 327, 80, False, 70, 40)
-split = Button('Split', 397, 80, False, 70, 40 )
-double = Button('Double', 467, 80, False, 75, 40)
+hit = Button('Hit', 330, 80, False, 70, 40)
+stand = Button('Stand', 400, 80, False, 70, 40)
 initial_deal_button = Button('Deal cards', 330, 375, True, 140, 40)
 quit_button = Button('Quit', 660, 520, True, 70, 40)
 next_round = Button('Next round', 660, 480, False, 120, 40)
