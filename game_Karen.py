@@ -1,4 +1,4 @@
-import pygame, sys 
+import pygame, sys # sys nodig?
 
 # IMPORT ALL FILES THAT CONTRIBUTE TO THE GAME LOOP AND THE WINDOW SETTINGS
 from constants import *
@@ -18,7 +18,7 @@ running = True
 active_nameRect = False 
 click_start_game = False 
 click_next_round = False 
-active_betRect = False  # hulpvariabele om na te gaan of player in de bet rectangle staat. Doel: om een bet te kunnen schrijven in de betRect moet je in die rectangle staat (en er op klikt). Het is niet nodig om te verwijzen naar speler 1 of speler 2 want je kan de variabele voor beiden inzetten. Denk ik.
+active_betRect = False  # Hulpvariabele om na te gaan of player in de bet rectangle staat. Doel: om een bet te kunnen schrijven in de betRect moet je in die rectangle staat (en er op klikt). Het is niet nodig om te verwijzen naar speler 1 of speler 2 want je kan de variabele voor beiden inzetten. Denk ik.
 click_bet_ok = False 
 click_play = False 
 click_initial_deal = False 
@@ -63,9 +63,9 @@ while running:
 
     if active_nameRect: 
       if event.type == pygame.KEYDOWN: 
-        if event.key == pygame.K_BACKSPACE:  # define use of the backspace 
+        if event.key == pygame.K_BACKSPACE:  # Define use of the backspace 
           nameinput_player = nameinput_player[:-1] 
-        elif event.key and len(nameinput_player)<20: #input can be any key, max. 20 tekens
+        elif event.key and len(nameinput_player)<20: # Input can be any key, max. 20 tekens
           nameinput_player += event.unicode 
         
     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -75,11 +75,11 @@ while running:
     # EVENT IN BET WINDOW. Player inputs bet; player can only use numbers and backspace to return and delete charachters
     if active_betRect == True: 
       if event.type == pygame.KEYDOWN: 
-        if event.key == pygame.K_BACKSPACE:  # define use of the backspace 
+        if event.key == pygame.K_BACKSPACE:  # Define use of the backspace 
           betinput_player = betinput_player[:-1] 
-        elif betinput_player[:1] == '0':  # input cannot start with 0
+        elif betinput_player[:1] == '0':  # Input cannot start with 0
           betinput_player = betinput_player[:-1]           
-        elif event.key in valid_keys and len(betinput_player)<3: #valid_keys is defined in bet.py = only number-keys
+        elif event.key in valid_keys and len(betinput_player)<3: # Valid_keys is defined in bet.py = only number-keys
           betinput_player += event.unicode 
 
     # EVENT IN BET WINDOW. Player clicks ok to confirm the bet he made.
@@ -107,9 +107,9 @@ while running:
 #--END OF EVENTS-- 
 #===============================================================================================================
 #===============================================================================================================
-#ME DESIGN. SETTING (DRAWING AND BLITTING) THE WINDOWS 
+# GAME DESIGN. SETTING (DRAWING AND BLITTING) THE WINDOWS 
   # SET THE MAIN WINDOW. Fill with colour 
-  # Set  GAtext and buttons 
+  # Set text and buttons 
   # Start by setting the screen
   window.fill((casino_green1))
   welcome.draw_text('center', window_width/2, 70)
@@ -132,7 +132,7 @@ while running:
   name_surface = font_size2.render(nameinput_player, True, white)
   window.blit(name_surface, (nameinput_playerRect.x+5, nameinput_playerRect.y+3))
 
-  nameinput_playerRect.w = max(140, name_surface.get_width() + 10) #om de tekstbox breder te maken als er meer tekens gebruikt worden. Textbox wordt op 140 breedte ingesteld en schuift op als je meer tekens gebruikt. 
+  nameinput_playerRect.w = max(140, name_surface.get_width() + 10) # Om de tekstbox breder te maken als er meer tekens gebruikt worden. Textbox wordt op 140 breedte ingesteld en schuift op als je meer tekens gebruikt. 
   
 # Setings for the play-button: you can only click play if you entered a bet between 1 and 999.
   if len(nameinput_player)<1: 
@@ -168,8 +168,8 @@ while running:
     bet_surface = font_size2.render(betinput_player, True, white)
     window.blit(bet_surface, (betinput_playerRect.x+5, betinput_playerRect.y+3))
 
-#   BET WINDOW
-#   Setings for the play-button: you can only click play if you entered a bet between 1 and 999.
+  # BET WINDOW
+  # Setings for the play-button: you can only click play if you entered a bet between 1 and 999.
     if betinput_player =='0' or len(betinput_player)<1: 
       bet_ok.enabled = False
       bet_ok.draw_button()
@@ -186,11 +186,11 @@ while running:
 # SET THE GAME WINDOW
   # Start with the window when clicked on 'play' in the bet screen. 
   if click_play: 
-    # set a new screen 
+    # Set a new screen 
     window.fill((casino_green1))
-    # draw a line in the middle 
+    # Draw a line in the middle 
     pygame.draw.line(window, yellow_gold, (0, 340), (800, 340), 2)
-    # set the title, text and buttons 
+    # Set the title, text and buttons 
     gametitle.draw_text('center', window_width/2, 25)
     playername = GameText(f'{nameinput_player}', font_size2, dark_red)
     playername.draw_text('center', window_width/2, 60)
@@ -231,7 +231,7 @@ while running:
     if len(dealer.card_img) == 4: 
       dealer.draw_card(3, 450, 450)
 
-# Result text on the screen -
+# Result text on the screen
 # During 5 rounds, the score falls back to the score of the previous round 
 # To make this work, their is another variable needed: scorefixer, a boolean that will be true if there's a result and False if the score is set. If you use blackjack win etc for this, the text will not appear on the screen anymore because of the loop.
     if blackjack or blackjack_tie or busted_player or tie or win or lose:
@@ -289,7 +289,7 @@ while running:
         see_you_next_time = GameText("See you next time. Click 'quit' to leave.", font_size2, black)
         see_you_next_time.draw_text('center', window_width/2, 310)
       
-    # Set information on the right bottom of the screen: information about actual round (nog niet klaar), scores (nog niert klaar)
+    # Set information on the right bottom of the screen
     round_text = GameText(f'Round  {round} of 5', font_size2, white) 
     round_text.draw_text('topleft', 20, 480)
     score_text = GameText(f'Score   {score}€', font_size2, white)
@@ -301,7 +301,7 @@ while running:
 #=================================================================================================================
 # THE GAME 
   # INITIAL DEAL: 
-  if click_initial_deal == True: # becomes True by clicking on the button "deal cards", zie event loop
+  if click_initial_deal == True: # Becomes True by clicking on the button "deal cards", zie event loop
     round_playing = True 
     hit.enabled = True 
     hit.draw_button()
@@ -322,7 +322,7 @@ while running:
     initial_deal_button.enabled = False
     initial_deal_button.draw_button()
     
-  # if player clicks hit1 for hand 1
+  # If player clicks hit for hand
   if click_hit == True: 
     clicks_on_hit += 1
     hit_card()
@@ -383,11 +383,11 @@ while running:
   if round_finished: 
     next_round.enabled = True
     next_round.draw_button()
-    round_finished = False # zo wordt de next_round-button terug op inactief gezet en kan je niet meer op next round klikken tot de ronde gedaan is
+    round_finished = False # Zo wordt de next_round-button terug op inactief gezet en kan je niet meer op next round klikken tot de ronde gedaan is
   if game_finished:
     next_round.enabled = False 
     next_round.draw_button()
-
+  
   if click_next_round: 
     round += 1
     clicks_on_next_round += 1
@@ -427,4 +427,3 @@ while running:
   pygame.display.update()
 
 pygame.quit()      
-
