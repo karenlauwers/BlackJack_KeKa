@@ -6,9 +6,6 @@ pygame.init()
 # CREATE BUTTON CLASS
 # By creating a class, we can create different buttons in the game, without having to define the variables over and over again
 # Every button in the game will have text, a position on the screen, will be enabled or disabled (can click on it or not) and a size (width, height)
-# BUTTON CLASS
-#By creating a class, we can create different buttons in the game, without having to define the variables over and over again
-#Every button in the game will have text, a position on the screen, will be enabled or disabled (can click on it or not) and a size (width, height)
 class Button: 
   def __init__(self, text, x_pos, y_pos, enabled, button_width, button_height): 
     self.text = text 
@@ -20,9 +17,6 @@ class Button:
     # self.draw() # If you enable this, function 'draw' is running every time you make an object of the class Button. 
                   # In our game, we want be able to prepare the buttons without drawing them, because we want to be in control of the drawing of each button.   
                   # If we do not call the function 'draw' every time we create a button, this means that we will have to call the function everytime we want to draw and blit the button on the screen.
-    # self.draw() # If you enable this, function 'draw' is running every time you make an object of the class Button
-                  # In our game, we want be able to prepare the buttons without drawing them. This is mainly because of the readibility of the code and the ability to keep blocks of code together
-                  # If we do not call the function 'draw' every time we create a button, this means that we will have to call the function everytime we want to draw and blit the button on the screen
   
 # Function to draw the rectangle in which we put the text, put the text in the rectangle and blit on the screen 
   def draw_button(self): 
@@ -38,9 +32,6 @@ class Button:
     pygame.draw.rect(window, dark_grey, button_rect, 2, 5) # kader om het vak heen 
     window.blit(button_text, (self.x_pos+10, self.y_pos+2))
 
-# Function to check if the button is clicked 
-# Features: if the button is enabled and you click on it, then the colour changes
-# If the button is disabled (so you won't be able to click on it), the button gets another colour
   # Function to check if the button is clicked 
   # Features: if the button is enabled and you click on it, then the colour changes. 
   # If the button is disabled (so you won't be able to click on it), the button gets another colour.

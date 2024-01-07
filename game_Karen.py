@@ -2,7 +2,7 @@
 # Thanks to Bobinson's public repository on GitHub - we used the card images of this repository. 
 # Thanks to Mozes721's public repository on GitHub - from which we learned more about the structure of the game.
 # Thanks to LeMaster Tech and Code Coach for inspiration on the game.
-import pygame, sys 
+import pygame
 
 # IMPORT ALL FILES THAT CONTRIBUTE TO THE GAME LOOP AND THE WINDOW SETTINGS
 from constants import *
@@ -92,7 +92,7 @@ while running:
       if event.type == pygame.KEYDOWN: 
         if event.key == pygame.K_BACKSPACE:  # Define use of the backspace 
           nameinput_player = nameinput_player[:-1] 
-        elif event.key and len(nameinput_player)<20: #input can be any key, max. 19 tekens
+        elif event.key and len(nameinput_player)<20: # Input can be any key, max. 19 tekens
           nameinput_player += event.unicode 
 
     # If the name is put in, player clicks button 'start game'

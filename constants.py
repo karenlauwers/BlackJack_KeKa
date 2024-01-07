@@ -1,5 +1,4 @@
 import pygame 
-import sys # Dit nodig?
 
 pygame.init()
 
