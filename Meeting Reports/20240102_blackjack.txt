@@ -1,0 +1,23 @@
+Agenda 2/1/2024
+- Stand van zaken 
+- Volgende stappen 
+
+Stand van zaken
+- De split-functie programmeren vraagt nog zeer veel werk. Besloten om dit niet verder te zetten en split-functie te schrappen. 
+    - Idem voor de double-functie. Zeker als we met rondes werken waarin de score in die rondes blijft doortellen. Besloten om dit niet verder te zetten en double-functie te schrappen.
+    - Karen hertekent scherm en knoppen zonder split en double. 
+- Karen heeft rondes in het spel gebracht. 5 rondes spelen terwijl score doortelt is gelukt. Score en ronde die men aan het spelen is wordt bijgehouden. 
+- Finale tekst ontwikkeld om na het spelen van de 5 rondes op het scherm te laten verschijnen. 
+- Karen heeft ook geprobeerd om play-again mogelijk te maken na de 5 rondes en dan opnieuw te beginnen. Opnieuw bet ingeven. 
+    Karen heeft veel geprobeerd en gezocht, maar dit is nog niet gelukt. Kenneth gaat dit ook bekijken. 
+    Probleem: We geraken wel terug op het bet-scherm, ingeven van nieuwe bet lukt, maar als je klikt op play verschijnt er slechts heel kort het volgende scherm om dan weer te verdwijnen. 
+    We begrijpen wel hoe dit komt. Er is een variabele die afgezet moet worden om te vermijden dat de loop blijft lopen. 
+    Maar we vinden dit niet. Als we een nieuwe knop creeren die dit mogelijk maakt, lukt het wel om via play door te klikken maar dan lukt het niet meer om de rectangle voor de betinput actief te krijgen. 
+    We besluiten om de play-again te laten vallen. Karen hertekent het scherm en verwijdert de play-again-knoppen.
+- Karen wil nog graag een time delay programmeren tussen het einde van de 5e ronde en het finale scorescherm. Nu gaat dat heel snel en zie je nauwelijks het resultaat van je 5e ronde. 
+- Files calculate en deck samengevoegd tot 1 file deck_and_calculate 
+
+Volgende stappen
+- Code opkuisen. Karen probeert om functies te maken van de resultaatsberekening en die via deck_and_calculate op te roepen in game-file. 
+- Beiden: comments opkuisen zodat het geheel overzichtelijk wordt.  
+

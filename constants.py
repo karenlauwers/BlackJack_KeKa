@@ -30,3 +30,7 @@ font_size2 = pygame.font.SysFont('Agency FB', 30)
 font_size3 = pygame.font.SysFont('Agency FB', 50)
 font_size4 = pygame.font.SysFont('Agency FB', 70)
 font_size5 = pygame.font.SysFont('Agency FB', 100)
+
+ranks = ['A', '2', '3', '4', '5', '6',  '7', '8', '9', '10', 'J', 'Q', 'K']
+suits = ['C', 'S', 'H', 'D']
+deck_count = 3 # only works with deck_count < 10

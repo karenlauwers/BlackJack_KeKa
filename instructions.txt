@@ -1,0 +1,43 @@
+BlackJack is a card game played against a dealer (=the computer). 
+You try to get a value of cards that's 21 or as close to 21 as possible.
+You're busted when the value of your cards is more than 21.
+The value of the cards are as follows: 
+- J, Q, K are worth 10
+- A is worth 1 if the sum of the cards played is greater than 10
+- A is 11 if the sum is 10 or lower than 10.
+- other cards have their own value 
+In this game, you play 5 rounds. 
+NAME: start by entering your name with a maximum of 20 characters.
+BET: choose a bet between 1 and 999€. 
+    - You will play 5 rounds with your bet. 
+    - So your total bet will be 5x your bet. 
+Game: 
+- DEAL CARDS: start the game or a next round by clicking 'Deal cards'
+- You and the dealer receive 2 cards. 
+- You can see both your cards, you can only see the first card of the dealer. 
+- If your first 2 cards give 21 (A + 10, J, Q or K), you have blackjack.
+    - If the dealer also has a blackjack, it's a tie. 
+    - If the dealer has no blackjack, you win the blackjack.
+- HIT: if the value of the first 2 cards is not 21, you can ask for one more card by clicking 'Hit'
+    - If the sum of the cards is still too low for you, you can ask for one more card. 
+    - You cannot ask for one more card. You can have a maximum of 4 cards in your hand. 
+    - If the sum of the cards is more than 21, you're busted. You lose. 
+- STAND: if you want to stay with the cards you have, after the deal or after one hit, you click 'Stand'
+- DEALER'S ACTION: after you have asked for 2x hit or 1x stand, the dealer will make his action:
+    - The hidden dealer's card is shown. 
+    - If the dealer's value is lower than 17, the dealer will pick one or two more cards. 
+    - The dealer can have a maximus of 4 cards. 
+- RESULT: 
+    - If your value is greater than 21, you are busted. You always lose. If the dealer's busted as well, you are in disadvantage. 
+    - If your value is equal to the dealer's value, it's a tie.
+    - If your value is closer to 21 than the dealer's value, you win. 
+    - If your value is further from 21 than the dealer's value, you lose. 
+    - 21 is only a blackjack if you make 21 with the first deal of cards. 
+        - 21 after hitting for more cards, is considered as other results. 
+- SCORE: 
+    - Blackjack = you win 1.5x your bet, so: 10€ bet, you get 25€ = 10€+(10€*1.5)
+    - Win = you win 1x your bet, so: 10€ bet, you get 20€ = 10€+(10€*1) 
+    - Tie = you win nothing, you lose nothing, so: 10€ bet, you get 10€
+    - Lose = you lose your bet, so: 10€ bet, you get 0€
+
+

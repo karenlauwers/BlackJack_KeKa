@@ -24,7 +24,7 @@ Vragen bij elkaars opgeladen bestanden
 - file blackjack_deck: def calculate_hand, lijn 42: 
 Aan ACE wordt de waarde 1 toegekend. 
 Maar in de while-loop die volgt wordt 10 afgetrokken van de value als de value >21 is en de rank een ACE is. 
-Hier lijkt iets niet te kloppen. Kenneth kijkt na // WHILE LOOP VERWIJDERT. ALLEEN TOEPASSELIJK ALS ACE EEN WAARDE 1 EN 11 HEEFT.
+Hier lijkt iets niet te kloppen. Kenneth kijkt na.
 
 - file calculate: 
 For-loop voor het delen van 2 kaarten: is er alleen voor 2playergame. Voor 1playergame verloopt dit anders.

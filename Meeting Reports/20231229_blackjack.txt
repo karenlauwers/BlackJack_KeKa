@@ -1,0 +1,40 @@
+Agenda 29/12/2023: 
+- stand van zaken
+- volgende stappen 
+
+Stand van zaken
+- Probleem met de waardetoekenning aan de kaarten opgelost. While loop aangepast. 
+- Probleem met de 'deal'functie en dus ook met de andere aan te maken functies is opgelost. 
+    Je moet de variable click_deal terug 'afzetten' nadat de actie in de ronde gelopen heeft (dus op False). 
+    Als je dat niet doet, dan blijft dat 'aan' staan en dan blijft ie in de loop kaarten bedelen. 
+    Dit zal ook belangrijk zijn voor de rest van de te creeren acties. 
+    Kenneth werkt verder aan de acties. 
+- Karen heeft geprobeerd om de resultaat-berekening in aparte functies te zetten in de calculate-file en 
+    deze dan op te roepen in de game-file. Dit lukt niet. Karen begrijpt niet goed waarom. Samen naar mogelijke 
+    oorzaak gezocht. Niet gevonden. Karen onderzoekt dit verder. 
+- Kenneth heeft stand-action ontwikkeld, maar werkt nog niet naar behoren. 
+    Bedoeling is dat de dealer kaarten bijneemt zolang hij geen 17 heeft. Karen zal dit onderzoeken. 
+- Calculate_hand: deze functie werkte nog niet helemaal. Met enkele aanpassingen is dit inmiddels wel gelukt
+- We willen het spel 5 ronden laten spelen, de score telt dan op. Daarna is er de mogelijkheid om play again te doen. 
+    Karen heeft geprobeerd om dit zo te programmeren. Dit is nog niet gelukt. Zowel Karen als Kenneth bekijken dit verder. 
+- 2-playergame besproken en mogelijkheden om 1playergame en 2playgergame uit elkaar te houden en overzichtelijk te houden. 
+    Uiteindelijk besloten om 2playergame te laten vallen. 
+    Karen verwijdert alle verwijzingen en programmatie die te maken heeft met 2playergame. 
+    Karen hertekent het scherm naar een volledig 1playergame 
+- Images van de kaarten ingeladen en functies aangemaakt om de kaarten op het scherm te tekenen. 
+    Locaties op het scherm bepaald. 
+    Deck_count toegevoegd bij de opbouw van het card_deck (build functie aangepast)
+    Functie get_filename en draw aangepast. 
+    Omdat we 3 decks kaarten gebruiken, kunnen er meerdere kaarten zijn met zelfde rank en suit. 
+    Als we get_filename zo opbouwen dat er geen 2 dezelfde kaarten in de card_img_list kunnen (wat nodig is) dan zal eenzelfde kaart die in 1 ronde bedeeld wordt, maar 1 keer op het scherrm getekend worden. 
+    Daarom deck_count toegevoegd.  
+
+Volgende stappen 
+- Karen herwerkt naar 1playergame en maakt dan kopie van de game in game-Karen en game-Kenneth. Zo kunnen we beiden verder programmeren en later terug samenvoegen. 
+- Karen pusht bewerkte bestanden met nieuwe namen naar GitHub. 
+- Knoppen deal, hit en stand kunnen finaal afgewerkt worden 
+- Kenneth maakt split-functie
+- Karen creeert locatie voor de split-hand op het scherm 
+- Karen maakt double-functie 
+
+Volgende afspraak di 2/1 om 18u
