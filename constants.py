@@ -1,18 +1,18 @@
 import pygame 
-import sys
+import sys # Dit nodig?
 
 pygame.init()
 
-#settings for frame per second 
+# Settings for frame per second 
 fps = 60
 clock = pygame.time.Clock()
 
-#window settings 
+# Window settings 
 window_width = 800
 window_height = 600
 window = pygame.display.set_mode((window_width, window_height))
 
-#playing with colors 
+# Playing with colors 
 black = (0, 0, 0)
 white = (255, 255, 255)
 casino_green1 = (39, 139, 34)
@@ -24,7 +24,7 @@ dark_grey = (90, 90, 90)
 dark_red = (139, 0, 0)
 yellow_gold = (255, 223, 0)
 
-#playing with font sizes
+# Playing with font sizes
 font_size1 = pygame.font.SysFont('Agency FB', 22)
 font_size2 = pygame.font.SysFont('Agency FB', 30)
 font_size3 = pygame.font.SysFont('Agency FB', 50)

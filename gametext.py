@@ -51,6 +51,7 @@ hand_value = GameText('Value', font_size2, dark_grey)
 dealer_text = GameText('Dealer', font_size2, dark_red)
 
 #Results 
+# Results 
 blackjack_text = GameText('Blackjack!', font_size2, dark_red)
 tie_text = GameText('It\'s a tie.', font_size2, dark_red) 
 win_text = GameText('You win!', font_size2, dark_red) 

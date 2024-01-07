@@ -2,7 +2,7 @@ import pygame, sys
 
 # IMPORT ALL FILES THAT CONTRIBUTE TO THE GAME LOOP AND THE WINDOW SETTINGS
 from constants import *
-from buttons_Ka import *
+from buttons import *
 from user_input import * 
 from gametext import * 
 from deck_and_calculate_Ka import * 

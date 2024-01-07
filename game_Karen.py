@@ -90,7 +90,7 @@ while running:
     # After clicking on the name-rectangle, player can input name. 
     if active_nameRect: 
       if event.type == pygame.KEYDOWN: 
-        if event.key == pygame.K_BACKSPACE:  # define use of the backspace 
+        if event.key == pygame.K_BACKSPACE:  # Define use of the backspace 
           nameinput_player = nameinput_player[:-1] 
         elif event.key and len(nameinput_player)<20: #input can be any key, max. 19 tekens
           nameinput_player += event.unicode 
@@ -108,9 +108,9 @@ while running:
     # After clicking on the bet-rectangle, player can input bet. 
     if active_betRect == True: 
       if event.type == pygame.KEYDOWN: 
-        if event.key == pygame.K_BACKSPACE:  # define use of the backspace 
+        if event.key == pygame.K_BACKSPACE:  # Define use of the backspace 
           betinput_player = betinput_player[:-1] 
-        elif betinput_player[:1] == '0':  # input cannot start with 0
+        elif betinput_player[:1] == '0':  # Input cannot start with 0
           betinput_player = betinput_player[:-1]           
         elif event.key in valid_keys and len(betinput_player)<3: #'valid_keys' is defined in user_input.py = only number-keys
           betinput_player += event.unicode 
@@ -235,7 +235,9 @@ while running:
   # Because, if not, the variable doesn't take the input created by the user but stays empty.
   if click_play: 
     # Set a new screen 
+    # Set a new screen 
     window.fill((casino_green1))
+    # Draw a line in the middle 
     # Draw a line in the middle 
     pygame.draw.line(window, yellow_gold, (0, 340), (800, 340), 2)
     # Set title, gametexts and buttons 
@@ -502,4 +504,3 @@ while running:
   pygame.display.update()
 
 pygame.quit()      
-
