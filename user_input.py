@@ -7,7 +7,7 @@ pygame.init()
 nameinput_player = ''
 nameinput_playerRect = pygame.Rect(320, 220, 140, 40)
 
-#User input: bet
+# User input: bet
 betinput_player = ''
 betinput_playerRect = pygame.Rect(340, 200, 120, 40)
 color_active = dark_red
