@@ -2,8 +2,33 @@ Stand van zaken:
 - comments opgekuist
 - import sys weggelaten 
 - deck, ranks en suits in constants ondergebracht
-- aanpassing in draw card images, want probleem van dezelfde kaarten niet tekenen bestond nog wel.
+- aanpassing in draw card images, want probleem van dezelfde kaarten niet tekenen bestond nog: 
+    -- file deck_and_calculate: lijn 80 in functie draw_card: card_image = pygame.image.load('images/' + self.card_img[card_img_index][1:] + '.png')
+    -- in de draw-functie wordt verwezen naar de naam van de op te halen image. Nr va card-deck (1e teken van de string) wordt weggelaten: [1:]
+    -- let wel: dit werkt dus enkel bij deck_count < 10 - als er meer dan 1 teken is in de deck_count, dan werkt dit niet meer, want enkel 1e teken wordt weggelaten
+- nog gezocht naar een manier om de functies voor het berekenen van het resultaat (check_blackjack, check_busted, check_result) apart te zetten en apart op te roepen 
+    -- dit moet toch mogelijk zijn, het zou de code vereenvoudigen
+    -- maar het is niet gelukt: Karen denkt dat het iets te maken moet hebben met de variabelen blackjack, blackjack_scorefixer etc. die niet bereikbaar zijn vanuit een aangemaakte functie 
+    -- geprobeerd met 'global'- maar lukte niet en Karen begrijpt het ook niet helemaal
+    -- Ook geprobeerd om een class Play aan te maken, maar ook daar liep ze in vast
+    -- Ook geprobeerd om de functies in de class Hand te definieren, werkte ook niet 
+    -- Kenneth heeft ook diverse zaken uitgeprobeerd, eveneens niet gelukt
 
 Final upload 
-- welke bestanden overhouden 
-- hoe opladen  
+- we zullen de files waarin we apart gewerkt hebben verder samenvoegen (dus de bestanden met Ka en Ke achteraan wegdoen)
+- van elk bestand enkel de laatste versie bewaren: 
+    -- buttons.py
+    -- constants.py
+    -- deck_and_calculate.py
+    -- game.py met het eigenlijke spel en de opbouw van de schermen 
+    -- gametext.py
+    -- user_input.py 
+    -- txt file instructions met toelichting van hoe het spel werkt 
+- Kenneth werkt bestanden af en laadt op in GitHub
+- Karen zet GitHub-repository waarin we samen gewerkt hebben public, zodat docenten dit kunnen zien indien gewenst
+    -- in omschrijving van cooperation voor challenge kan je verwijzen naar deze GibHub Repo
+- opladen van bestanden voor docenten moet in aparte GitHub - die je aanmaakt via GitHub Classroom Assignment, 
+    - zelfde principe als bij andere repo's die je op die manier hebt aangemaakt: assignment aanvaarden door op je naam te klikken
+    - link via de project guidelines
+- veel dank voor de samenwerking
+- succes met het examen 
