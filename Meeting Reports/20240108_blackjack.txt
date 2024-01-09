@@ -1,0 +1,9 @@
+Stand van zaken: 
+- comments opgekuist
+- import sys weggelaten 
+- deck, ranks en suits in constants ondergebracht
+- aanpassing in draw card images, want probleem van dezelfde kaarten niet tekenen bestond nog wel.
+
+Final upload 
+- welke bestanden overhouden 
+- hoe opladen  
